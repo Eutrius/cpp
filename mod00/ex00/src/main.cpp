@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "megaphone.hpp"
-#include <iostream>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	std::cout << "hello";
+	Megaphone	meg;
+
+	(void)argc;
+	meg.speak(&argv[1]);
 	return (0);
 }

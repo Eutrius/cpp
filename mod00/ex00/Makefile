@@ -9,7 +9,7 @@ RM = rm -rf
 OBJ_DIR = obj
 SRC_DIR = src
 
-SRC = main.cpp \
+SRC = src/main.cpp \
 	  src/megaphone.cpp
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
@@ -17,7 +17,7 @@ OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(INCLUDE) -o $@ $^
+	@$(CC) -o $@ $^
 	@printf "\n\033[1A\033[K"
 	@printf "\033[0;32m$(TITLE) compiled OK!\n"
 	@printf "\033[0;37m"
