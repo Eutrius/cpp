@@ -15,8 +15,6 @@ SRC = src/main.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
-
 $(NAME): $(OBJ)
 	@$(CC) -o $@ $^
 	@printf "\n\033[1A\033[K"
@@ -27,6 +25,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(dir $@)
 	@printf "\033[0;37m Generating $(TITLE) objects... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+RULES = all clean fclean re run valgrind
+
+all: $(NAME)
 
 clean:
 	@$(RM) $(OBJ_DIR)
@@ -41,5 +43,13 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: $(NAME)
+	@./$(NAME) $(filter-out $(RULES), $(MAKECMDGOALS))
 
+valgrind: $(NAME)
+	@valgrind ./$(NAME) $(filter-out $(RULES), $(MAKECMDGOALS))
+
+%:
+	@true
+
+.PHONY: $(RULES)
