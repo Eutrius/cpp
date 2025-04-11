@@ -31,10 +31,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 clean:
 	@$(RM) $(OBJ_DIR)
 	@printf "\033[0;31m$(TITLE) cleaned!\n"
-
-fclean: clean
-	@$(RM) $(NAME)
 	@printf "\033[0;37m"
+
+fclean:
+	@$(RM) $(OBJ_DIR)
+	@$(RM) $(NAME)
 	@printf "\033[0;31m$(TITLE) removed!\n"
 	@printf "\033[0;37m"
 

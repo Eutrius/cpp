@@ -11,19 +11,34 @@
 /* ************************************************************************** */
 
 #include "contact.hpp"
+#include <iostream>
+
+static std::string get_input(std::string prompt);
 
 Contact::Contact()
 {
-}
-
-Contact::Contact(std::string first_name, std::string last_name,
-	std::string nickname, std::string phone_number,
-	std::string darkest_secret) : first_name(first_name), last_name(last_name),
-	nickname(nickname), phone_number(phone_number),
-	darkest_secret(darkest_secret)
-{
+	this->first_name = get_input("first name: ");
+	this->last_name = get_input("last name: ");
+	this->nickname = get_input("nickname: ");
+	this->phone_number = get_input("phone number: ");
+	this->darkest_secret = get_input("darkest secret: ");
 }
 
 Contact::~Contact()
 {
+}
+
+static std::string get_input(std::string prompt)
+{
+	std::string input;
+	while (1)
+	{
+		if (!std::cin.eof())
+			std::cout << prompt;
+		if (!std::getline(std::cin, input))
+			return (input);
+		if (input.size() == 0)
+			continue ;
+		return (input);
+	}
 }

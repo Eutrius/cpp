@@ -10,21 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "phonebook.hpp"
 #include <iostream>
 #include <string>
 
 int	main(void)
 {
+	Phonebook	phonebook;
+
 	std::string input;
 	while (1)
 	{
-		std::cout << "Phonebook: ";
+		if (!std::cin.eof())
+			std::cout << "Phonebook: ";
 		if (!std::getline(std::cin, input))
 			return (1);
-		if (input == "ADD")
-			std::cout << "ADD" << std::endl;
+		else if (input == "ADD")
+			phonebook.add();
 		else if (input == "SEARCH")
-			std::cout << "SEARCH" << std::endl;
+			phonebook.search();
 		else if (input == "EXIT")
 			return (0);
 	}
