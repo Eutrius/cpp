@@ -14,6 +14,7 @@
 # define CONTACT_H
 
 # include <string>
+
 class Contact
 {
   public:
@@ -22,13 +23,17 @@ class Contact
 	std::string nickname;
 
 	Contact();
-	Contact(std::string first_name, std::string last_name, std::string nickname,
-		std::string phone_number, std::string darkest_secret);
 	~Contact();
+
+	void info(void);
 
   private:
 	std::string phone_number;
 	std::string darkest_secret;
+
+	std::string get_input(std::string prompt);
+	std::string trim_input(std::string res);
+	std::string get_phone_number(void);
 };
 
 #endif

@@ -13,32 +13,82 @@
 #include "contact.hpp"
 #include <iostream>
 
-static std::string get_input(std::string prompt);
-
 Contact::Contact()
 {
-	this->first_name = get_input("first name: ");
-	this->last_name = get_input("last name: ");
-	this->nickname = get_input("nickname: ");
-	this->phone_number = get_input("phone number: ");
-	this->darkest_secret = get_input("darkest secret: ");
+	first_name = trim_input(get_input("First Name: "));
+	last_name = trim_input(get_input("Last Name: "));
+	nickname = trim_input(get_input("Nickname: "));
+	phone_number = get_phone_number();
+	darkest_secret = trim_input(get_input("Darkest Secret: "));
 }
 
 Contact::~Contact()
 {
 }
 
-static std::string get_input(std::string prompt)
+std::string Contact::get_input(std::string prompt)
 {
 	std::string input;
-	while (1)
+	while (42)
 	{
-		if (!std::cin.eof())
-			std::cout << prompt;
+		if (!std::cin || std::cin.eof())
+			break ;
+		std::cout << prompt;
 		if (!std::getline(std::cin, input))
-			return (input);
-		if (input.size() == 0)
+			break ;
+		if (input.empty())
+		{
+			std::cerr << "Error: empty field, try again" << std::endl;
 			continue ;
-		return (input);
+		}
+		break ;
 	}
+	return (input);
+}
+
+void Contact::info(void)
+{
+	std::cout << "First Name: " << first_name << std::endl;
+	std::cout << "Last Name: " << last_name << std::endl;
+	std::cout << "Nickname: " << nickname << std::endl;
+	std::cout << "Phone Number: " << phone_number << std::endl;
+	std::cout << "Darkest Secret: " << darkest_secret << std::endl;
+}
+
+std::string Contact::trim_input(std::string res)
+{
+	std::string spaces = "\t\n\v\f\r ";
+	res.erase(0, res.find_first_not_of(spaces));
+	res.erase(res.find_last_not_of(spaces) + 1);
+	return (res);
+}
+
+std::string Contact::get_phone_number(void)
+{
+	size_t	i;
+	size_t	max;
+	size_t	min;
+
+	std::string num;
+	while (42)
+	{
+		i = 0;
+		max = 10;
+		min = 3;
+		num = trim_input(get_input("Phone Number: "));
+		if (!std::cin || std::cin.eof())
+			break ;
+		if (num[i] == '+')
+		{
+			i++;
+			max += 3;
+			min += 3;
+		}
+		while (num[i] >= '0' && num[i] <= '9' && i < max)
+			i++;
+		if (i == num.size() && i >= min)
+			break ;
+		std::cerr << "Error: invalid phone number, try again" << std::endl;
+	}
+	return (num);
 }

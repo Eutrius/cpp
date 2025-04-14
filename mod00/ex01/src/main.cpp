@@ -12,25 +12,28 @@
 
 #include "phonebook.hpp"
 #include <iostream>
-#include <string>
 
 int	main(void)
 {
 	Phonebook	phonebook;
 
 	std::string input;
-	while (1)
+	while (42)
 	{
-		if (!std::cin.eof())
-			std::cout << "Phonebook: ";
-		if (!std::getline(std::cin, input))
+		if (!std::cin || std::cin.eof())
+		{
+			std::cerr << "\nError: input failed" << std::endl;
 			return (1);
+		}
+		std::cout << "Phonebook: ";
+		if (!std::getline(std::cin, input))
+			continue ;
 		else if (input == "ADD")
 			phonebook.add();
 		else if (input == "SEARCH")
 			phonebook.search();
 		else if (input == "EXIT")
-			return (0);
+			break ;
 	}
 	return (0);
 }

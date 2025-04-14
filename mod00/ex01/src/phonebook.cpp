@@ -11,18 +11,20 @@
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+#include <iostream>
+#include <sstream>
 
 Phonebook::Phonebook()
 {
-	this->size = 0;
-	this->oldest = 0;
+	size = 0;
+	oldest = 0;
 }
 
 Phonebook::~Phonebook()
 {
 	if (size > 0)
 	{
-		for (int i = 0; i < this->size; i++)
+		for (int i = 0; i < size; i++)
 			delete this->contacts[i];
 	}
 }
@@ -30,24 +32,102 @@ Phonebook::~Phonebook()
 void Phonebook::add(void)
 {
 	Contact	*contact;
-	int		new_oldest;
 
+	std::cout << "\033[2J\033[1;1H";
 	contact = new Contact();
-	if (this->size < MAX_NUM_CONTACT)
+	std::cout << "\033[2J\033[1;1H";
+	if (size < MAX_CONTACT)
 	{
-		this->contacts[this->oldest] = contact;
-		this->oldest++;
-		this->size++;
+		contacts[size] = contact;
+		size++;
 	}
 	else
 	{
-		new_oldest = (this->oldest + 1) % this->size;
-		delete this->contacts[new_oldest];
-		this->contacts[new_oldest] = contact;
-		this->oldest = new_oldest;
+		delete this->contacts[oldest];
+		contacts[oldest] = contact;
+		oldest = (oldest + 1) % size;
 	}
 }
 
 void Phonebook::search(void)
 {
+	if (size == 0)
+	{
+		std::cout << "Error: phonebook is empty" << std::endl;
+		return ;
+	}
+	std::cout << "\033[2J\033[1;1H";
+	print_headers();
+	for (int i = 0; i < size; i++)
+		print_contact_names(i);
+	print_seperator();
+	select_contact();
+}
+
+void Phonebook::print_formatted(std::string str, int mode)
+{
+	int	len;
+
+	len = str.size();
+	if (mode == 0)
+		std::cout << "|";
+	if (len <= COLUMN_WIDTH)
+		std::cout << std::string(COLUMN_WIDTH - len, ' ') + str;
+	else
+		std::cout << str.substr(0, COLUMN_WIDTH - 1) + '.';
+	std::cout << "|";
+	if (mode == 2)
+		std::cout << std::endl;
+}
+
+void Phonebook::print_seperator(void)
+{
+	std::cout << std::string(((COLUMN_WIDTH + 1) * COLUMN_NUM) + 1,
+		'-') << std::endl;
+}
+
+void Phonebook::print_headers(void)
+{
+	print_seperator();
+	print_formatted("Index", 0);
+	print_formatted("First Name", 1);
+	print_formatted("Last Name", 1);
+	print_formatted("Nickname", 2);
+	print_seperator();
+}
+
+void Phonebook::print_contact_names(int index)
+{
+	Contact	*contact;
+
+	std::ostringstream oss;
+	oss << index + 1;
+	contact = contacts[index];
+	print_formatted(oss.str(), 0);
+	print_formatted(contact->first_name, 1);
+	print_formatted(contact->last_name, 1);
+	print_formatted(contact->nickname, 2);
+}
+
+void Phonebook::select_contact(void)
+{
+	int	value;
+
+	std::string input;
+	while (42)
+	{
+		if (!std::cin || std::cin.eof())
+			return ;
+		std::cout << "Select: ";
+		if (!std::getline(std::cin, input))
+			return ;
+		if (input.size() == 1)
+		{
+			value = input[0] - '0';
+			if (value >= 1 && value <= size)
+				break ;
+		}
+		std::cerr << "Error: invalid index, try again" << std::endl;
+	}
+	contacts[(input[0] - '0') - 1]->info();
 }
