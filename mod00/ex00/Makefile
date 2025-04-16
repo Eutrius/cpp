@@ -9,8 +9,8 @@ RM = rm -rf
 OBJ_DIR = obj
 SRC_DIR = src
 
-SRC = src/main.cpp \
-	  src/megaphone.cpp
+SRC = src/megaphone.cpp \
+	  src/Megaphone.cpp
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 

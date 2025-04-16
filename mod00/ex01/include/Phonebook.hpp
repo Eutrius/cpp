@@ -11,33 +11,33 @@
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#define PHONEBOOK_H
 
-# include "contact.hpp"
+#include "Contact.hpp"
 
 class Phonebook
 {
   public:
-	Phonebook();
-	~Phonebook();
+    Phonebook();
+    ~Phonebook();
 
-	void add();
-	void search();
+    void add();
+    void search();
 
   private:
-	static const int MAX_CONTACT = 8;
-	static const int COLUMN_WIDTH = 10;
-	static const int COLUMN_NUM = 4;
+    static const int MAX_CONTACT = 8;
+    static const int COLUMN_WIDTH = 10;
+    static const int COLUMN_NUM = 4;
 
-	int size;
-	int oldest;
-	Contact *contacts[MAX_CONTACT];
+    int size;
+    int oldest;
+    Contact *contacts[MAX_CONTACT];
 
-	void print_formatted(std::string str, int mode);
-	void print_seperator(void);
-	void print_headers(void);
-	void print_contact_names(int index);
-	void select_contact(void);
+    void print_formatted(std::string str, int mode);
+    void print_seperator(void);
+    void print_headers(void);
+    void print_contact_names(int index);
+    void select_contact(void);
 };
 
 #endif

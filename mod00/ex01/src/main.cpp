@@ -10,30 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
+#include "Phonebook.hpp"
 #include <iostream>
 
-int	main(void)
+int main(void)
 {
-	Phonebook	phonebook;
+    Phonebook phonebook;
+    std::string input;
 
-	std::string input;
-	while (42)
-	{
-		if (!std::cin || std::cin.eof())
-		{
-			std::cerr << "\nError: input failed" << std::endl;
-			return (1);
-		}
-		std::cout << "Phonebook: ";
-		if (!std::getline(std::cin, input))
-			continue ;
-		else if (input == "ADD")
-			phonebook.add();
-		else if (input == "SEARCH")
-			phonebook.search();
-		else if (input == "EXIT")
-			break ;
-	}
-	return (0);
+    while (42)
+    {
+        if (!std::cin || std::cin.eof())
+        {
+            std::cerr << "\nError: input failed" << std::endl;
+            return (1);
+        }
+        std::cout << "Phonebook: ";
+        if (!std::getline(std::cin, input))
+            continue;
+        else if (input == "ADD")
+            phonebook.add();
+        else if (input == "SEARCH")
+            phonebook.search();
+        else if (input == "EXIT")
+            break;
+    }
+    return (0);
 }

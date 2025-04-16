@@ -1,5 +1,5 @@
-NAME = phonebook
-TITLE = Phonebook
+NAME = test
+TITLE = Test
 
 CC = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 
@@ -9,9 +9,8 @@ RM = rm -rf
 OBJ_DIR = obj
 SRC_DIR = src
 
-SRC = src/main.cpp \
-	  src/Contact.cpp \
-	  src/Phonebook.cpp \
+SRC = src/tests.cpp \
+	  src/Account.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
