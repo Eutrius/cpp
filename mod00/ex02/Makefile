@@ -13,6 +13,7 @@ SRC = src/tests.cpp \
 	  src/Account.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+IGN = .gitignore
 
 $(NAME): $(OBJ)
 	@$(CC) -o $@ $^
@@ -25,7 +26,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@printf "\033[0;37m Generating $(TITLE) objects... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-RULES = all clean fclean re run valgrind
+$(IGN):
+	@printf "$(IGN)\n.cache\ncompile_commands.json\n$(NAME)\n$(OBJ_DIR)\n" > $(IGN)
+
+
+RULES = all clean fclean re run valgrind i c
 
 all: $(NAME)
 
@@ -41,6 +46,11 @@ fclean:
 	@printf "\033[0;37m"
 
 re: fclean all
+
+i: $(IGN)
+
+c:
+	@compiledb make --no-print-directory re
 
 run: $(NAME)
 	@./$(NAME) $(filter-out $(RULES), $(MAKECMDGOALS))

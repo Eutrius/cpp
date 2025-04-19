@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.hpp                                        :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,29 +11,32 @@
 /* ************************************************************************** */
 
 #ifndef CONTACT_H
-# define CONTACT_H
+#define CONTACT_H
 
-# include <string>
+#include <string>
 
 class Contact
 {
   public:
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
+    Contact();
+    ~Contact();
 
-	Contact();
-	~Contact();
-
-	void info(void);
+    void info(void);
+    void populate(void);
+	std::string getFirstName();
+	std::string getLastName();
+	std::string getNickname();
 
   private:
-	std::string phone_number;
-	std::string darkest_secret;
+    std::string first_name;
+    std::string last_name;
+    std::string nickname;
+    std::string phone_number;
+    std::string darkest_secret;
 
-	std::string get_input(std::string prompt);
-	std::string trim_input(std::string res);
-	std::string get_phone_number(void);
+    std::string get_input(std::string prompt);
+    std::string trim_input(std::string res);
+    std::string get_phone_number(void);
 };
 
 #endif

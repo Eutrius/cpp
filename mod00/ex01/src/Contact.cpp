@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,11 +15,6 @@
 
 Contact::Contact()
 {
-    first_name = trim_input(get_input("First Name: "));
-    last_name = trim_input(get_input("Last Name: "));
-    nickname = trim_input(get_input("Nickname: "));
-    phone_number = get_phone_number();
-    darkest_secret = trim_input(get_input("Darkest Secret: "));
 }
 
 Contact::~Contact()
@@ -46,6 +41,21 @@ std::string Contact::get_input(std::string prompt)
     return (input);
 }
 
+std::string Contact::getFirstName(void)
+{
+	return (first_name);
+}
+
+std::string Contact::getLastName(void)
+{
+	return (last_name);
+}
+
+std::string Contact::getNickname(void)
+{
+	return (nickname);
+}
+
 void Contact::info(void)
 {
     std::cout << "First Name: " << first_name << std::endl;
@@ -53,6 +63,15 @@ void Contact::info(void)
     std::cout << "Nickname: " << nickname << std::endl;
     std::cout << "Phone Number: " << phone_number << std::endl;
     std::cout << "Darkest Secret: " << darkest_secret << std::endl;
+}
+
+void Contact::populate(void)
+{
+    first_name = trim_input(get_input("First Name: "));
+    last_name = trim_input(get_input("Last Name: "));
+    nickname = trim_input(get_input("Nickname: "));
+    phone_number = get_phone_number();
+    darkest_secret = trim_input(get_input("Darkest Secret: "));
 }
 
 std::string Contact::trim_input(std::string res)

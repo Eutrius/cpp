@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,37 +14,25 @@
 #include <iostream>
 #include <sstream>
 
-Phonebook::Phonebook()
+Phonebook::Phonebook() : size(0), oldest(0)
 {
-    size = 0;
-    oldest = 0;
 }
 
 Phonebook::~Phonebook()
 {
-    if (size > 0)
-    {
-        for (int i = 0; i < size; i++)
-            delete contacts[i];
-    }
 }
 
 void Phonebook::add(void)
 {
-    Contact *contact;
-
-    std::cout << "\033[2J\033[1;1H";
-    contact = new Contact();
     std::cout << "\033[2J\033[1;1H";
     if (size < MAX_CONTACT)
     {
-        contacts[size] = contact;
+        contacts[size].populate();
         size++;
     }
     else
     {
-        delete contacts[oldest];
-        contacts[oldest] = contact;
+        contacts[oldest].populate();
         oldest = (oldest + 1) % size;
     }
 }
@@ -97,15 +85,15 @@ void Phonebook::print_headers(void)
 
 void Phonebook::print_contact_names(int index)
 {
-    Contact *contact;
+    Contact contact;
     std::ostringstream oss;
 
     oss << index + 1;
     contact = contacts[index];
     print_formatted(oss.str(), 0);
-    print_formatted(contact->first_name, 1);
-    print_formatted(contact->last_name, 1);
-    print_formatted(contact->nickname, 2);
+    print_formatted(contact.getFirstName(), 1);
+    print_formatted(contact.getLastName(), 1);
+    print_formatted(contact.getNickname(), 2);
 }
 
 void Phonebook::select_contact(void)
@@ -128,5 +116,5 @@ void Phonebook::select_contact(void)
         }
         std::cerr << "Error: invalid index, try again" << std::endl;
     }
-    contacts[(input[0] - '0') - 1]->info();
+    contacts[(input[0] - '0') - 1].info();
 }

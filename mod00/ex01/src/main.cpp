@@ -13,6 +13,8 @@
 #include "Phonebook.hpp"
 #include <iostream>
 
+static void print_usage(void);
+
 int main(void)
 {
     Phonebook phonebook;
@@ -25,6 +27,11 @@ int main(void)
             std::cerr << "\nError: input failed" << std::endl;
             return (1);
         }
+        if (input != "SEARCH")
+        {
+            std::cout << "\033[2J\033[1;1H";
+            print_usage();
+        }
         std::cout << "Phonebook: ";
         if (!std::getline(std::cin, input))
             continue;
@@ -36,4 +43,12 @@ int main(void)
             break;
     }
     return (0);
+}
+
+static void print_usage(void)
+{
+    std::cout << " - Phonebook - " << std::endl;
+    std::cout << "ADD: add contact" << std::endl;
+    std::cout << "SEARCH: list and select contact" << std::endl;
+    std::cout << "EXIT: exit" << std::endl << std::endl;
 }
