@@ -14,11 +14,11 @@
 #include <iostream>
 #include <sstream>
 
-Phonebook::Phonebook() : size(0), oldest(0)
+Phonebook::Phonebook(void) : size(0), oldest(0)
 {
 }
 
-Phonebook::~Phonebook()
+Phonebook::~Phonebook(void)
 {
 }
 

@@ -18,14 +18,14 @@
 class Contact
 {
   public:
-    Contact();
-    ~Contact();
+    Contact(void);
+    ~Contact(void);
 
     void info(void);
     void populate(void);
-	std::string getFirstName();
-	std::string getLastName();
-	std::string getNickname();
+    std::string getFirstName(void);
+    std::string getLastName(void);
+    std::string getNickname(void);
 
   private:
     std::string first_name;

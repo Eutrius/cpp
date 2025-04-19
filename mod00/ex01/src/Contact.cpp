@@ -13,11 +13,11 @@
 #include "Contact.hpp"
 #include <iostream>
 
-Contact::Contact()
+Contact::Contact(void)
 {
 }
 
-Contact::~Contact()
+Contact::~Contact(void)
 {
 }
 
@@ -43,17 +43,17 @@ std::string Contact::get_input(std::string prompt)
 
 std::string Contact::getFirstName(void)
 {
-	return (first_name);
+    return (first_name);
 }
 
 std::string Contact::getLastName(void)
 {
-	return (last_name);
+    return (last_name);
 }
 
 std::string Contact::getNickname(void)
 {
-	return (nickname);
+    return (nickname);
 }
 
 void Contact::info(void)
