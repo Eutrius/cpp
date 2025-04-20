@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 14:19:31 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/19 15:01:23 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/20 10:01:11 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/20 15:09:22 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include "zombie.h"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
 #include <string>
 
-void randomChump(std::string name)
+int main(void)
 {
-    Zombie zombie = Zombie(name);
-    zombie.announce();
+    {
+        Weapon club = Weapon("crude spiked club");
+        HumanA bob("Bob", club);
+        bob.attack();
+        club.setType("some other type of club");
+        bob.attack();
+    }
+    {
+        HumanB jim("Jim");
+        jim.attack();
+    }
+    return (0);
 }

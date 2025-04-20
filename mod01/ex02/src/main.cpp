@@ -5,21 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 11:50:28 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/19 15:04:41 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/20 10:01:11 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/20 10:01:27 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include "zombie.h"
+#include <iostream>
+#include <ostream>
+#include <string>
 
 int main(void)
 {
-    Zombie *michael = newZombie("Michael");
-    michael->announce();
-    delete michael;
+    std::string string = "HI THIS IS BRAIN";
+    std::string *stringPTR = &string;
+    std::string &stringREF = string;
 
-    randomChump("Jackson");
+    std::cout << &string << std::endl;
+    std::cout << &stringPTR << std::endl;
+    std::cout << &stringREF << std::endl;
+
+    std::cout << string << std::endl;
+    std::cout << *stringPTR << std::endl;
+    std::cout << stringREF << std::endl;
 
     return (0);
 }

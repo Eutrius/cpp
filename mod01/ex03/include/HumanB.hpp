@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 14:19:31 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/19 15:01:23 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/20 14:31:24 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/20 15:06:46 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include "zombie.h"
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
+
+#include "Weapon.hpp"
 #include <string>
 
-void randomChump(std::string name)
+class HumanB
 {
-    Zombie zombie = Zombie(name);
-    zombie.announce();
-}
+  public:
+    HumanB(std::string name);
+    ~HumanB(void);
+
+    void attack(void);
+    void setWeapon(Weapon &weapon);
+
+  private:
+    std::string _name;
+    Weapon *_weapon;
+};
+
+#endif

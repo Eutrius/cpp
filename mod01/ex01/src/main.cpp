@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.h"
 #include "Zombie.hpp"
+#include "zombie.h"
 
 int main(void)
 {
@@ -21,7 +21,7 @@ int main(void)
 
     for (int i = 0; i < nZombies; i++)
         horde[i].announce();
-
     delete[] horde;
+
     return (0);
 }

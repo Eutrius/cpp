@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 14:19:31 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/19 15:01:23 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/20 10:34:37 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/20 14:40:18 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include "zombie.h"
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
+
+#include "Weapon.hpp"
 #include <string>
 
-void randomChump(std::string name)
+class HumanA
 {
-    Zombie zombie = Zombie(name);
-    zombie.announce();
-}
+  public:
+    HumanA(std::string name, Weapon &weapon);
+    ~HumanA(void);
+
+    void attack(void);
+
+  private:
+    std::string _name;
+    Weapon &_weapon;
+};
+
+#endif

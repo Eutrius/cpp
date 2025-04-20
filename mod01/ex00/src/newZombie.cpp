@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.h"
 #include "Zombie.hpp"
+#include "zombie.h"
 #include <string>
 
 Zombie *newZombie(std::string name)
 {
-	Zombie *zombie = new Zombie(name);
-	return (zombie);
+    Zombie *zombie = new Zombie(name);
+    return (zombie);
 }
