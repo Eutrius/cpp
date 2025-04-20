@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/19 11:43:11 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/19 15:35:43 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/19 13:52:22 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/19 15:36:16 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
-
+#include "Zombie.hpp"
+#include <iostream>
 #include <string>
 
-class Zombie
+Zombie::Zombie(void)
 {
-  public:
-    Zombie(void);
-    Zombie(std::string);
-    ~Zombie(void);
+}
 
-    void announce(void);
+Zombie::~Zombie(void)
+{
+}
 
-  private:
-    std::string _name;
-};
+void Zombie::setName(std::string name)
+{
+	_name = name;
+}
 
-#endif
+void Zombie::announce(void)
+{
+    std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}

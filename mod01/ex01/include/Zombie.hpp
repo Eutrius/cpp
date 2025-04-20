@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 11:43:11 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/19 15:35:43 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/04/19 14:15:09 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ class Zombie
 {
   public:
     Zombie(void);
-    Zombie(std::string);
     ~Zombie(void);
 
+    void setName(std::string);
     void announce(void);
 
   private:
