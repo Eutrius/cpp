@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zed.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 10:01:11 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/22 14:12:58 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/22 13:44:36 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/22 14:13:25 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zed.hpp"
-#include <iostream>
+#ifndef ZED_HPP
+#define ZED_HPP
 
-int main(int argc, char **argv)
+#include <string>
+
+class Zed
 {
-    if (argc != 4)
-    {
-        std::cerr << "Usage: ./zed filename fromString toString" << std::endl;
-        return (1);
-    }
-	Zed zed(argv[1], argv[2], argv[3]);
-    return (zed.run());
-}
+  public:
+	Zed(std::string infile, std::string fromStr, std::string toStr);
+	~Zed(void);
 
+	int run(void);
+
+  private:
+	std::string _infileName;
+	std::string _fromStr;
+	std::string _toStr;
+
+	std::string replace(std::string line);
+
+};
+
+#endif

@@ -1,5 +1,5 @@
 NAME = zed
-TITLE = Sed is for losers 
+TITLE = Sed is for losers
 
 CC = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 
@@ -10,6 +10,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 
 SRC = src/main.cpp \
+	  src/Zed.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore
