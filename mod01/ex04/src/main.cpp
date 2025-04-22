@@ -20,7 +20,6 @@ int main(int argc, char **argv)
         std::cerr << "Usage: ./zed filename fromString toString" << std::endl;
         return (1);
     }
-	Zed zed(argv[1], argv[2], argv[3]);
+    Zed zed(argv[1], argv[2], argv[3]);
     return (zed.run());
 }
-
