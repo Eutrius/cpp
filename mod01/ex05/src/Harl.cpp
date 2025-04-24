@@ -23,18 +23,19 @@ Harl::~Harl(void)
 
 void Harl::complain(std::string level)
 {
-	static  const t_complaint complaints[] = {
-		{"DEBUG", &Harl::debug},
-		{"INFO", &Harl::info},
-		{"WARNING", &Harl::warning},
-		{"ERROR", &Harl::error},
-	};
+    static const t_complaint complaints[] = {
+        {"DEBUG", &Harl::debug},
+        {"INFO", &Harl::info},
+        {"WARNING", &Harl::warning},
+        {"ERROR", &Harl::error},
+    };
 
-	for (size_t i = 0; i <= sizeof(complaints)/ sizeof(complaints[0]); i++)
-	{
-		if (level == complaints[i].level)
-			(this->*complaints[i].func)();
-	};
+    for (size_t i = 0; i < sizeof(complaints) / sizeof(complaints[0]); i++)
+    {
+        std::cout << i << std::endl;
+        if (level == complaints[i].level)
+            (this->*complaints[i].func)();
+    };
 }
 
 void Harl::debug(void)
