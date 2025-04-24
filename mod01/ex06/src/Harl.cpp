@@ -31,7 +31,7 @@ void Harl::complain(std::string level)
     };
 
     size_t index = 0;
-    while (index <= sizeof(levels) / sizeof(levels[0]))
+    while (index < sizeof(levels) / sizeof(levels[0]))
     {
         if (level == levels[index])
             break;
@@ -51,7 +51,7 @@ void Harl::complain(std::string level)
         // fall through
     case 3:
         error();
-		break;
+        break;
     default:
         std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
     }
