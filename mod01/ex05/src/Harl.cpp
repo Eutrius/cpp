@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:44:07 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/22 17:45:24 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/04/23 14:06:59 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ Harl::~Harl(void)
 
 void Harl::complain(std::string level)
 {
+	static  const t_complaint complaints[] = {
+		{"DEBUG", &Harl::debug},
+		{"INFO", &Harl::info},
+		{"WARNING", &Harl::warning},
+		{"ERROR", &Harl::error},
+	};
+
+	for (size_t i = 0; i <= sizeof(complaints)/ sizeof(complaints[0]); i++)
+	{
+		if (level == complaints[i].level)
+			(this->*complaints[i].func)();
+	};
 }
 
 void Harl::debug(void)

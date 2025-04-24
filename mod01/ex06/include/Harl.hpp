@@ -24,13 +24,6 @@ class Harl
     void complain(std::string level);
 
   private:
-    typedef void (Harl::*memFn)(void);
-    typedef struct s_complaint
-    {
-        std::string level;
-        memFn func;
-    } t_complaint;
-
     void debug(void);
     void info(void);
     void warning(void);

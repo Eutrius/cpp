@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 15:30:28 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/04/23 14:09:28 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/04/21 15:29:25 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/04/23 14:08:41 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-#define HARL_HPP
+#include "Harl.hpp"
+#include <iostream>
 
-#include <string>
-
-class Harl
+int main(int argc, char **argv)
 {
-  public:
-    Harl(void);
-    ~Harl(void);
-
-    void complain(std::string level);
-
-  private:
-    typedef void (Harl::*memFn)(void);
-    typedef struct s_complaint
+    if (argc != 2)
     {
-        std::string level;
-        memFn func;
-    } t_complaint;
+        std::cerr << "Usage: ./harlFilter [\"DEBUG\",\"INFO\",\"WARNING\",\"ERROR\"]" << std::endl;
+        return (1);
+    }
 
-    void debug(void);
-    void info(void);
-    void warning(void);
-    void error(void);
-};
+    Harl harl;
+    harl.complain(argv[1]);
 
-#endif
+    return (0);
+}
