@@ -14,10 +14,6 @@
 #include <iostream>
 #include <string>
 
-Zombie::Zombie(void)
-{
-}
-
 Zombie::Zombie(std::string name) : _name(name)
 {
 }
