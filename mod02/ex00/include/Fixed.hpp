@@ -18,6 +18,7 @@ class Fixed
     Fixed(void);
     Fixed(const Fixed &other);
     ~Fixed(void);
+
     Fixed &operator=(const Fixed &other);
 
     int getRawBits(void) const;

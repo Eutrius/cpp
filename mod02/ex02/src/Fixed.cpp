@@ -74,25 +74,34 @@ bool Fixed::operator!=(const Fixed &other) const
 
 Fixed Fixed::operator+(const Fixed &other) const
 {
-    Fixed tmp = Fixed(this->toFloat() + other.toFloat());
+    Fixed tmp;
+    tmp.setRawBits(_value + other.getRawBits());
     return (tmp);
 }
 
 Fixed Fixed::operator-(const Fixed &other) const
 {
-    Fixed tmp = Fixed(this->toFloat() - other.toFloat());
+    Fixed tmp;
+    tmp.setRawBits(_value - other.getRawBits());
     return (tmp);
 }
 
 Fixed Fixed::operator*(const Fixed &other) const
 {
-    Fixed tmp = Fixed(this->toFloat() * other.toFloat());
+    Fixed tmp;
+    long long tmp_value = static_cast<long long>(_value) * static_cast<long long>(other.getRawBits());
+    tmp.setRawBits(static_cast<int>(tmp_value >> FRACTIONAL_BITS));
     return (tmp);
 }
 
 Fixed Fixed::operator/(const Fixed &other) const
 {
-    Fixed tmp = Fixed(this->toFloat() / other.toFloat());
+    Fixed tmp;
+    if (other.getRawBits() == 0)
+        return (tmp);
+    long long tmp_value = static_cast<long long>(_value) << FRACTIONAL_BITS;
+    tmp_value = tmp_value / static_cast<long long>(other.getRawBits());
+    tmp.setRawBits(static_cast<int>(tmp_value));
     return (tmp);
 }
 
@@ -134,12 +143,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-    return (static_cast<float>(_value) / (1 << FRACTIONAL_BITS));
+    return (static_cast<float>(_value) / static_cast<float>(1 << FRACTIONAL_BITS));
 }
 
 int Fixed::toInt(void) const
 {
-    return (int)(_value >> FRACTIONAL_BITS);
+    return (static_cast<int>(_value >> FRACTIONAL_BITS));
 }
 
 Fixed &Fixed::min(Fixed &a, Fixed &b)

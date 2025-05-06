@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Point.hpp"
-#include <cstdlib>
 
 Point::Point(void) : _x(0), _y(0)
 {
@@ -50,5 +49,5 @@ Fixed Point::triangleArea(Point const &a, Point const &b, Point const &c)
     Fixed bhA = (a.getX() * (b.getY() - c.getY()));
     Fixed bhB = (b.getX() * (c.getY() - a.getY()));
     Fixed bhC = (c.getX() * (a.getY() - b.getY()));
-    return ((bhA + bhB + bhC) / Fixed(2.0f));
+    return (Fixed::abs(bhA + bhB + bhC) / Fixed(2.0f));
 }

@@ -12,25 +12,24 @@
 
 #include "Fixed.hpp"
 #include "Point.hpp"
-#include <iostream>
 
 bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
+    Fixed epsilon;
+    epsilon.setRawBits(1);
+
     Fixed area = Point::triangleArea(a, b, c);
-    Fixed areaAB = Point::triangleArea(a, b, point);
-    Fixed areaAC = Point::triangleArea(a, point, c);
-    Fixed areaBC = Point::triangleArea(point, b, c);
-    Fixed sum = areaBC + areaAC + areaAB;
+    if (area <= epsilon)
+        return (false);
 
-    std::cout << sum << std::endl;
-    std::cout << area << std::endl;
-    if (area == sum)
-    {
-        if (areaAC == 0 || areaBC == 0 || areaAB == 0)
-            return (false);
+    Fixed area1 = Point::triangleArea(point, b, c);
+    Fixed area2 = Point::triangleArea(a, point, c);
+    Fixed area3 = Point::triangleArea(a, b, point);
 
-        return (true);
-    }
+    if (area1 <= epsilon || area2 <= epsilon || area3 <= epsilon)
+        return (false);
 
-    return (false);
+    Fixed diff = Fixed::abs((area1 + area2 + area3) - area);
+
+    return (diff <= epsilon);
 }
