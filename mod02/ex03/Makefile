@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:42:22 by jyriarte          #+#    #+#              #
-#    Updated: 2025/04/29 16:42:23 by jyriarte         ###   ########.fr        #
+#    Updated: 2025/05/06 15:58:38 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRC_DIR = src
 
 SRC = src/main.cpp \
 	  src/Fixed.cpp \
+	  src/Point.cpp \
+	  src/bsp.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore

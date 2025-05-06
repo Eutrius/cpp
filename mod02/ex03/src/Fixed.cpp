@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 17:20:21 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/05 15:53:17 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:52:50 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,11 @@ Fixed &Fixed::min(Fixed &a, Fixed &b)
 Fixed &Fixed::max(Fixed &a, Fixed &b)
 {
     return (a > b) ? a : b;
+}
+
+Fixed Fixed::abs(Fixed a)
+{
+    return (a < Fixed(0) ? a * Fixed(-1) : a);
 }
 
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b)

@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 16:53:08 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/05 15:53:26 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:53:25 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FIXED_HPP
@@ -51,6 +51,7 @@ class Fixed
     static Fixed &max(Fixed &a, Fixed &b);
     static const Fixed &max(const Fixed &a, const Fixed &b);
     static const Fixed &min(const Fixed &a, const Fixed &b);
+    static Fixed abs(Fixed a);
 
   private:
     static const int FRACTIONAL_BITS = 8;
