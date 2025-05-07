@@ -161,6 +161,16 @@ Fixed &Fixed::max(Fixed &a, Fixed &b)
     return (a > b) ? a : b;
 }
 
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+    return (a < b) ? a : b;
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
+{
+    return (a > b) ? a : b;
+}
+
 Fixed Fixed::abs(Fixed a)
 {
     if (a.getRawBits() < 0)
@@ -170,16 +180,6 @@ Fixed Fixed::abs(Fixed a)
         return (tmp);
     }
     return (a);
-}
-
-const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
-{
-    return (a < b) ? a : b;
-}
-
-const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
-{
-    return (a > b) ? a : b;
 }
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
