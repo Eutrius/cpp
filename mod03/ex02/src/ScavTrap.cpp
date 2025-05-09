@@ -28,8 +28,8 @@ ScavTrap::ScavTrap(std::string &name) : ClapTrap()
     _health = 100;
     _energy = 50;
     _damage = 20;
-    std::cout << TYPENAME << " " << name << " is created." << std::endl;
     _name = name;
+    std::cout << TYPENAME << " " << name << " is created." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
