@@ -17,21 +17,21 @@ int main(void)
     std::string name = "Clap";
 
     ClapTrap clap(name);
-    clap.getStatus();
+    clap.printStatus();
 
     clap.attack("Dark" + name);
-    clap.getStatus();
+    clap.printStatus();
 
     clap.beRepaired(1);
-    clap.getStatus();
+    clap.printStatus();
 
     clap.takeDamage(1);
-    clap.getStatus();
+    clap.printStatus();
 
     std::string cloneName = "Clone";
     ClapTrap clone(clap);
     clone.setName(cloneName);
-    clone.getStatus();
+    clone.printStatus();
 
     clone.beRepaired(1);
     clone.beRepaired(1);
@@ -42,22 +42,22 @@ int main(void)
     clone.beRepaired(1);
     clone.beRepaired(1);
     clone.beRepaired(1);
-    clone.getStatus();
+    clone.printStatus();
 
     std::string anotherClone = "anotherClone";
     ClapTrap clone2;
     clone2 = clap;
     clone2.setName(anotherClone);
-    clone2.getStatus();
+    clone2.printStatus();
 
     clone2.takeDamage(100);
-    clone2.getStatus();
+    clone2.printStatus();
 
     clone2.attack("Dark " + anotherClone);
     clone2.beRepaired(5);
-    clone2.getStatus();
+    clone2.printStatus();
 
     clone2.attack("Dark " + anotherClone);
-    clone2.getStatus();
+    clone2.printStatus();
     return (0);
 }

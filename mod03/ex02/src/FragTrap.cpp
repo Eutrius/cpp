@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:36:21 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/09 11:46:27 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:17:06 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,20 @@ FragTrap::FragTrap(void) : ClapTrap()
     std::cout << "A " << TYPENAME << " is created." << std::endl;
 }
 
-FragTrap::FragTrap(std::string &name) : ClapTrap()
+FragTrap::FragTrap(const std::string &name) : ClapTrap(name)
 {
     _health = 100;
     _energy = 100;
     _damage = 30;
     std::cout << TYPENAME << " " << name << " is created." << std::endl;
-    _name = name;
 }
 
-FragTrap::FragTrap(const FragTrap &other) : ClapTrap()
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
-    _name = other.getName();
-    _health = other.getHealth();
-    _energy = other.getEnergy();
-    _damage = other.getDamage();
-    std::cout << TYPENAME << " " << other.getName() << " is cloned." << std::endl;
+    _health = other._health;
+    _energy = other._energy;
+    _damage = other._damage;
+    std::cout << TYPENAME << " " << other._name << " is cloned." << std::endl;
 }
 
 FragTrap::~FragTrap(void)
@@ -48,11 +46,11 @@ FragTrap::~FragTrap(void)
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
 {
-    _name = other.getName();
-    _health = other.getHealth();
-    _energy = other.getEnergy();
-    _damage = other.getDamage();
-    std::cout << TYPENAME << " " << other.getName() << " is cloned." << std::endl;
+    _name = other._name;
+    _health = other._health;
+    _energy = other._energy;
+    _damage = other._damage;
+    std::cout << TYPENAME << " " << other._name << " is cloned." << std::endl;
     return (*this);
 }
 

@@ -6,43 +6,35 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:29:25 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/10 15:24:54 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:19:08 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
+#include <iostream>
 
 int main(void)
 {
-    ScavTrap scav("Scav");
+    DiamondTrap dia("Frag");
 
-    scav.attack("Enemy Scav");
-    scav.printStatus();
+    dia.attack("Enemy Frag");
+    dia.printStatus();
 
-    scav.takeDamage(20);
-    scav.printStatus();
+    dia.takeDamage(20);
+    dia.printStatus();
 
-    scav.beRepaired(50);
-    scav.printStatus();
+    dia.beRepaired(50);
+    dia.printStatus();
 
-    scav.takeDamage(130);
-    scav.attack("Enemy Scav");
-    scav.printStatus();
+    dia.highFivesGuys();
+    dia.printStatus();
 
-    scav.beRepaired(50);
-    scav.printStatus();
+    dia.guardGate();
+    dia.printStatus();
 
-    scav.guardGate();
-    scav.printStatus();
+    dia.whoAmI();
 
-    ScavTrap scavClone(scav);
-	scavClone.setName("Clone1");
-    scavClone.printStatus();
-
-    ScavTrap scavClone2;
-    scavClone2 = scav;
-	scavClone2.setName("Clone2");
-    scavClone2.printStatus();
+    std::cout << std::endl;
 
     return (0);
 }

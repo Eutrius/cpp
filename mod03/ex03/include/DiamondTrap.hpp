@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 15:10:34 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/10 15:15:34 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:42:56 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLAGTRAP_HPP
-#define FLAGTRAP_HPP
+#ifndef DIAMONDTRAP_HPP
+#define DIAMONDTRAP_HPP
 
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-class FragTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
   public:
-    FragTrap(void);
-    FragTrap(const std::string &name);
-    FragTrap(const FragTrap &other);
-    ~FragTrap(void);
+    DiamondTrap(void);
+    DiamondTrap(const std::string &name);
+    DiamondTrap(const DiamondTrap &other);
+    ~DiamondTrap(void);
 
-    FragTrap &operator=(const FragTrap &other);
-	
+    DiamondTrap &operator=(const DiamondTrap &other);
+
     std::string getType(void) const;
+    std::string getName(void) const;
 
-    void highFivesGuys(void);
+    void whoAmI(void) const;
 
   private:
     static const std::string TYPENAME;
+    std::string _name;
 };
 
 #endif

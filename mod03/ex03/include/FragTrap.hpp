@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
   public:
     FragTrap(void);
@@ -24,8 +24,9 @@ class FragTrap : public ClapTrap
     ~FragTrap(void);
 
     FragTrap &operator=(const FragTrap &other);
-	
+
     std::string getType(void) const;
+    std::string getName(void) const;
 
     void highFivesGuys(void);
 

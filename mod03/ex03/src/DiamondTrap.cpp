@@ -1,51 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:36:21 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/10 15:17:08 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:44:47 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <iostream>
 
-const std::string ScavTrap::TYPENAME = "ScavTrap";
+const std::string DiamondTrap::TYPENAME = "DiamondTrap";
 
-ScavTrap::ScavTrap(void) : ClapTrap()
+DiamondTrap::DiamondTrap(void) : ScavTrap(), FragTrap()
 {
-    _health = 100;
-    _energy = 50;
-    _damage = 20;
+    _health = FragTrap::_health;
+    _energy = ScavTrap::_energy;
+    _damage = FragTrap::_damage;
     std::cout << "A " << TYPENAME << " is created." << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
+DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap(), _name(name)
 {
-    _health = 100;
-    _energy = 50;
-    _damage = 20;
+    _health = FragTrap::_health;
+    _energy = ScavTrap::_energy;
+    _damage = FragTrap::_damage;
     std::cout << TYPENAME << " " << name << " is created." << std::endl;
-    _name = name;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(other), FragTrap(other)
 {
+    _name = other._name;
     _health = other._health;
     _energy = other._energy;
     _damage = other._damage;
     std::cout << TYPENAME << " " << other._name << " is cloned." << std::endl;
 }
 
-ScavTrap::~ScavTrap(void)
+DiamondTrap::~DiamondTrap(void)
 {
     std::cout << TYPENAME << " " << _name << " is destroyed." << std::endl;
 }
 
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
 {
     _name = other._name;
     _health = other._health;
@@ -55,12 +55,18 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
     return (*this);
 }
 
-void ScavTrap::guardGate(void)
+void DiamondTrap::whoAmI(void) const
 {
-    std::cout << TYPENAME << " " << _name << " is now in Gate Keeper mode." << std::endl;
+    std::cout << TYPENAME << " " << _name << ": I am " << _name << ", a direct discendant of " << ClapTrap::_name << "!"
+              << std::endl;
 }
 
-std::string ScavTrap::getType(void) const
+std::string DiamondTrap::getType(void) const
 {
     return (TYPENAME);
+}
+
+std::string DiamondTrap::getName(void) const
+{
+    return (this->_name);
 }

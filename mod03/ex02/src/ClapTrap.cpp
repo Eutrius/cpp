@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 11:00:03 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/08 11:01:09 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:13:16 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,73 +19,42 @@ const std::string ClapTrap::TYPENAME = "ClapTrap";
 
 ClapTrap::ClapTrap(void) : _health(10), _energy(10), _damage(0)
 {
-    std::cout << "A " << ClapTrap::getType() << " is created." << std::endl;
+    std::cout << "A " << TYPENAME << " is created." << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string &name) : _name(name), _health(10), _energy(10), _damage(0)
+ClapTrap::ClapTrap(const std::string &name) : _name(name), _health(10), _energy(10), _damage(0)
 {
-    std::cout << ClapTrap::getType() << " " << name << " is created." << std::endl;
+    std::cout << TYPENAME << " " << name << " is created." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other)
-    : _name(other.getName()), _health(other.getHealth()), _energy(other.getEnergy()), _damage(other.getDamage())
+    : _name(other._name), _health(other._health), _energy(other._energy), _damage(other._damage)
 {
-    std::cout << ClapTrap::getType() << " " << other.getName() << " is cloned." << std::endl;
+    std::cout << TYPENAME << " " << other._name << " is cloned." << std::endl;
 }
 
 ClapTrap::~ClapTrap(void)
 {
-    std::cout << ClapTrap::getType() << " " << _name << " is destroyed." << std::endl;
+    std::cout << TYPENAME << " " << _name << " is destroyed." << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-    _name = other.getName();
-    _health = other.getHealth();
-    _energy = other.getEnergy();
-    _damage = other.getDamage();
-    std::cout << ClapTrap::getType() << " " << other.getName() << " is cloned." << std::endl;
+    _name = other._name;
+    _health = other._health;
+    _energy = other._energy;
+    _damage = other._damage;
+    std::cout << ClapTrap::getType() << " " << other._name << " is cloned." << std::endl;
     return (*this);
 }
 
-std::string ClapTrap::getName(void) const
-{
-    return (_name);
-}
-unsigned int ClapTrap::getHealth(void) const
-{
-    return (_health);
-}
-unsigned int ClapTrap::getEnergy(void) const
-{
-    return (_energy);
-}
-unsigned int ClapTrap::getDamage(void) const
-{
-    return (_damage);
-}
 
-void ClapTrap::setName(std::string &name)
+void ClapTrap::setName(const std::string &name)
 {
     _name = name;
 }
 
-void ClapTrap::setHealth(unsigned int health)
-{
-    _health = health;
-}
-
-void ClapTrap::setEnergy(unsigned int energy)
-{
-    _energy = energy;
-}
-
-void ClapTrap::setDamage(unsigned int damage)
-{
-    _damage = damage;
-}
-
-void ClapTrap::getStatus(void) const
+void ClapTrap::printStatus(void) const
 {
     std::cout << std::endl;
     std::cout << this->getType() << ": " << _name << std::endl;

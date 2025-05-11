@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:36:21 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/09 11:46:27 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:25:03 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ScavTrap::ScavTrap(void) : ClapTrap()
     std::cout << "A " << TYPENAME << " is created." << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string &name) : ClapTrap()
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
 {
     _health = 100;
     _energy = 50;
@@ -32,13 +32,12 @@ ScavTrap::ScavTrap(std::string &name) : ClapTrap()
     _name = name;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
-    _name = other.getName();
-    _health = other.getHealth();
-    _energy = other.getEnergy();
-    _damage = other.getDamage();
-    std::cout << TYPENAME << " " << other.getName() << " is cloned." << std::endl;
+    _health = other._health;
+    _energy = other._energy;
+    _damage = other._damage;
+    std::cout << TYPENAME << " " << other._name << " is cloned." << std::endl;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -48,12 +47,17 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 {
-    _name = other.getName();
-    _health = other.getHealth();
-    _energy = other.getEnergy();
-    _damage = other.getDamage();
-    std::cout << TYPENAME << " " << other.getName() << " is cloned." << std::endl;
+    _name = other._name;
+    _health = other._health;
+    _energy = other._energy;
+    _damage = other._damage;
+    std::cout << TYPENAME << " " << other._name << " is cloned." << std::endl;
     return (*this);
+}
+
+std::string ScavTrap::getType(void) const
+{
+    return (TYPENAME);
 }
 
 void ScavTrap::guardGate(void)
@@ -61,7 +65,14 @@ void ScavTrap::guardGate(void)
     std::cout << TYPENAME << " " << _name << " is now in Gate Keeper mode." << std::endl;
 }
 
-std::string ScavTrap::getType(void) const
+void ScavTrap::attack(const std::string &target)
 {
-    return (TYPENAME);
+    if (_energy && _health)
+    {
+        std::cout << this->getType() << " " << _name << " used scav uppercut to " << target << ", causing " << _damage
+                  << " points of damage!" << std::endl;
+        _energy--;
+    }
+    else
+        std::cout << this->getType() << " " << _name << " is not responding." << std::endl;
 }

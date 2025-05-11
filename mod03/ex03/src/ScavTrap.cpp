@@ -55,12 +55,29 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
     return (*this);
 }
 
-void ScavTrap::guardGate(void)
-{
-    std::cout << TYPENAME << " " << _name << " is now in Gate Keeper mode." << std::endl;
-}
-
 std::string ScavTrap::getType(void) const
 {
     return (TYPENAME);
+}
+
+std::string ScavTrap::getName(void) const
+{
+    return (_name);
+}
+
+void ScavTrap::guardGate(void)
+{
+    std::cout << this->getType() << " " << this->getName() << " is now in Gate Keeper mode." << std::endl;
+}
+
+void ScavTrap::attack(const std::string &target)
+{
+    if (_energy && _health)
+    {
+        std::cout << this->getType() << " " << this->getName() << " fires at " << target << ", causing " << _damage
+                  << " points of damage!" << std::endl;
+        _energy--;
+    }
+    else
+        std::cout << this->getType() << " " << this->getName() << " is not responding." << std::endl;
 }

@@ -19,7 +19,7 @@ class ClapTrap
 {
   public:
     ClapTrap(void);
-    ClapTrap(std::string &name);
+    ClapTrap(const std::string &name);
     ClapTrap(const ClapTrap &other);
     ~ClapTrap(void);
 
@@ -28,17 +28,9 @@ class ClapTrap
     void attack(const std::string &target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
+    void printStatus(void) const;
 
-    void getStatus(void) const;
-    std::string getName(void) const;
-    unsigned int getHealth(void) const;
-    unsigned int getEnergy(void) const;
-    unsigned int getDamage(void) const;
-
-    void setName(std::string &name);
-    void setHealth(unsigned int health);
-    void setEnergy(unsigned int energy);
-    void setDamage(unsigned int damage);
+    void setName(const std::string &name);
 
   private:
     std::string _name;

@@ -21,19 +21,20 @@ class ClapTrap
     ClapTrap(void);
     ClapTrap(const std::string &name);
     ClapTrap(const ClapTrap &other);
-    ~ClapTrap(void);
+    virtual ~ClapTrap(void);
 
     ClapTrap &operator=(const ClapTrap &other);
 
-    void attack(const std::string &target);
-    void takeDamage(unsigned int amount);
-    void beRepaired(unsigned int amount);
+    virtual std::string getType(void) const;
+    virtual std::string getName(void) const;
+
+    void setName(const std::string &name);
 
     void printStatus(void) const;
 
-    virtual std::string getType(void) const;
-
-    void setName(const std::string &name);
+    virtual void attack(const std::string &target);
+    void takeDamage(unsigned int amount);
+    void beRepaired(unsigned int amount);
 
   protected:
     std::string _name;

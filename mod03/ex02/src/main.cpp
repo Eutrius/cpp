@@ -6,35 +6,43 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 15:29:25 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/09 11:46:55 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:19:08 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
+#include <iostream>
 
 int main(void)
 {
-    std::string name = "Frag";
-    FragTrap frag(name);
+    FragTrap frag("Frag");
 
-    frag.attack("Dark " + name);
-    frag.getStatus();
+    frag.attack("Enemy Frag");
+    frag.printStatus();
 
     frag.takeDamage(20);
-    frag.getStatus();
+    frag.printStatus();
 
     frag.beRepaired(50);
-    frag.getStatus();
+    frag.printStatus();
 
     frag.highFivesGuys();
-    frag.getStatus();
+    frag.printStatus();
 
-    FragTrap scavClone(frag);
-    scavClone.getStatus();
+    FragTrap fragClone(frag);
+    fragClone.setName("Clone1");
+    fragClone.printStatus();
 
-    FragTrap scavClone2;
-    scavClone2 = frag;
-    scavClone2.getStatus();
+    FragTrap fragClone2;
+    fragClone2 = frag;
+    fragClone2.setName("Clone2");
+    fragClone2.printStatus();
+
+    frag.highFivesGuys();
+    fragClone.highFivesGuys();
+    fragClone2.highFivesGuys();
+
+	std::cout << std::endl;
 
     return (0);
 }

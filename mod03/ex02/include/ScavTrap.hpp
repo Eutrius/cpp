@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                      	 :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 11:21:01 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/09 11:24:33 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/10 15:10:34 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/10 15:16:37 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +19,12 @@ class ScavTrap : public ClapTrap
 {
   public:
     ScavTrap(void);
-    ScavTrap(std::string &name);
+    ScavTrap(const std::string &name);
     ScavTrap(const ScavTrap &other);
     ~ScavTrap(void);
 
     ScavTrap &operator=(const ScavTrap &other);
+	
     std::string getType(void) const;
 
     void guardGate(void);
