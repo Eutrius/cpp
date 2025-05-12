@@ -31,9 +31,11 @@ class ScavTrap : virtual public ClapTrap
     void attack(const std::string &target);
     void guardGate(void);
 
+  protected:
+    static const int BASE_ENERGY = 50;
+
   private:
     static const std::string TYPENAME;
-    static const int baseEnergy = 50;
 };
 
 #endif

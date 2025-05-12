@@ -94,5 +94,5 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 void ClapTrap::setName(const std::string &name)
 {
-	_name = name;
+    _name = name;
 }

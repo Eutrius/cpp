@@ -23,17 +23,18 @@ ScavTrap::ScavTrap(void) : ClapTrap()
     std::cout << "A " << TYPENAME << " is created." << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name)
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap()
 {
+    _name = name;
     _health = 100;
     _energy = 50;
     _damage = 20;
     std::cout << TYPENAME << " " << name << " is created." << std::endl;
-    _name = name;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
 {
+    _name = other._name;
     _health = other._health;
     _energy = other._energy;
     _damage = other._damage;
@@ -63,4 +64,16 @@ void ScavTrap::guardGate(void)
 std::string ScavTrap::getType(void) const
 {
     return (TYPENAME);
+}
+
+void ScavTrap::attack(const std::string &target)
+{
+    if (_energy && _health)
+    {
+        std::cout << this->getType() << " " << _name << " used scav uppercut to " << target << ", causing " << _damage
+                  << " points of damage!" << std::endl;
+        _energy--;
+    }
+    else
+        std::cout << this->getType() << " " << _name << " is not responding." << std::endl;
 }

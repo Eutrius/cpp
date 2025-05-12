@@ -18,7 +18,7 @@ const std::string DiamondTrap::TYPENAME = "DiamondTrap";
 DiamondTrap::DiamondTrap(void) : ScavTrap(), FragTrap()
 {
     _health = FragTrap::_health;
-    _energy = ScavTrap::_energy;
+    _energy = ScavTrap::BASE_ENERGY;
     _damage = FragTrap::_damage;
     std::cout << "A " << TYPENAME << " is created." << std::endl;
 }
@@ -26,7 +26,7 @@ DiamondTrap::DiamondTrap(void) : ScavTrap(), FragTrap()
 DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap(), _name(name)
 {
     _health = FragTrap::_health;
-    _energy = ScavTrap::_energy;
+    _energy = ScavTrap::BASE_ENERGY;
     _damage = FragTrap::_damage;
     std::cout << TYPENAME << " " << name << " is created." << std::endl;
 }
