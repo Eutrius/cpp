@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 11:48:50 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 16:29:59 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:47:29 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 12:10:35 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include <iostream>
+#ifndef UTILS_H
+# define UTILS_H
 
-int main(void)
+# include <string>
+
+typedef enum e_color
 {
-    const Animal *meta = new Animal();
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+	BLACK,
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	Purple,
+	CYAN,
+	WHITE,
+}		t_color;
 
-    return (0);
-}
+void	cPrint(const std::string &str, int endl = 1, t_color color = WHITE);
+
+#endif

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 11:48:50 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 16:29:59 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:48:20 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 14:45:02 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
+#include "utils.h"
 #include <iostream>
+#include <sstream>
 
-int main(void)
+void cPrint(const std::string &str, int endl, t_color color)
 {
-    const Animal *meta = new Animal();
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+    std::ostringstream oss;
+    oss << color;
 
-    return (0);
+    std::cout << "\033[38;5;" << oss.str() << "m";
+    std::cout << str << "\033[0m";
+    if (endl)
+        std::cout << std::endl;
 }

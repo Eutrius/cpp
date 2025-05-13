@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:42:31 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:17:43 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
-#include "Animal.hpp"
+#include "utils.h"
 #include <string>
 
-class Cat : public Animal
+class WrongAnimal
 {
   public:
-    Cat(void);
-    Cat(const Cat &other);
-    ~Cat(void);
+    WrongAnimal(void);
+    WrongAnimal(const WrongAnimal &other);
+    ~WrongAnimal(void);
 
-    Cat &operator=(const Cat &other);
+    WrongAnimal &operator=(const WrongAnimal &other);
 
-    std::string getType(void) const;
+    virtual std::string getType(void) const;
 
-    void makeSound(void) const;
+    virtual void makeSound(void) const;
+
+  protected:
+    std::string _type;
 
   private:
-    static const t_color _color = RED;
+    static const t_color _color = WHITE;
 };
 
 #endif

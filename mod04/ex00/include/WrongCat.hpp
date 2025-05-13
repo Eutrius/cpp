@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 11:48:50 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 16:29:59 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 18:18:49 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
+
 #include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-#include <iostream>
+#include <string>
 
-int main(void)
+class WrongCat : public Animal
 {
-    const Animal *meta = new Animal();
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+  public:
+    WrongCat(void);
+    WrongCat(const WrongCat &other);
+    ~WrongCat(void);
 
-    return (0);
-}
+    WrongCat &operator=(const WrongCat &other);
+
+    std::string getType(void) const;
+
+    void makeSound(void) const;
+
+  private:
+    static const t_color _color = RED;
+};
+
+#endif

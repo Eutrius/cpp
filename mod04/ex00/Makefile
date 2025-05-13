@@ -6,11 +6,11 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:42:22 by jyriarte          #+#    #+#              #
-#    Updated: 2025/05/10 15:23:07 by jyriarte         ###   ########.fr        #
+#    Updated: 2025/05/13 14:44:39 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = polymorpshism
+NAME = polymorphism
 TITLE = Polymorphism
 
 CC = g++
@@ -22,6 +22,10 @@ OBJ_DIR = obj
 SRC_DIR = src
 
 SRC = src/main.cpp \
+	  src/utils.cpp \
+	  src/Animal.cpp \
+	  src/Cat.cpp \
+	  src/Dog.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore
