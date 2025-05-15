@@ -13,47 +13,38 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 #include <iostream>
 
 int main(void)
 {
-    const Animal *animal = new Animal();
     std::cout << std::endl;
-    const WrongAnimal *wrongAnimal = new WrongAnimal();
+    cPrint("########## DEFAULT TEST ##########", 1, CYAN);
     std::cout << std::endl;
-    const Animal *dog = new Dog();
+    const Animal *j = new Dog();
     std::cout << std::endl;
-    const Animal *cat = new Cat();
+    const Animal *i = new Cat();
     std::cout << std::endl;
-    const WrongAnimal *wrongCat = new WrongCat();
-
+    delete j;
     std::cout << std::endl;
-    std::cout << dog->getType() << " " << std::endl;
-    std::cout << cat->getType() << " " << std::endl;
-    std::cout << wrongCat->getType() << " " << std::endl;
+    delete i;
+    std::cout << std::endl;
+    cPrint("##################################", 1, CYAN);
     std::cout << std::endl;
 
+    Animal *animals[10];
     std::cout << std::endl;
-    animal->makeSound();
-    wrongAnimal->makeSound();
-    dog->makeSound();
+    cPrint("########### ARRAY TEST ###########", 1, CYAN);
     std::cout << std::endl;
-
-    cat->makeSound();
-    wrongCat->makeSound();
-
+    for (int i = 0; i < 5; i++)
+        animals[i] = new Dog();
     std::cout << std::endl;
-    delete (animal);
+    for (int i = 5; i < 10; i++)
+        animals[i] = new Cat();
     std::cout << std::endl;
-    delete (wrongAnimal);
+    for (int i = 0; i < 10; i++)
+        delete animals[i];
     std::cout << std::endl;
-    delete (cat);
-    std::cout << std::endl;
-    delete (dog);
-    std::cout << std::endl;
-    delete (wrongCat);
+    cPrint("##################################", 1, CYAN);
     std::cout << std::endl;
     return (0);
 }
