@@ -21,7 +21,7 @@ class Animal
   public:
     Animal(void);
     Animal(const Animal &other);
-    ~Animal(void);
+    virtual ~Animal(void);
 
     Animal &operator=(const Animal &other);
 
@@ -33,7 +33,7 @@ class Animal
     std::string _type;
 
   private:
-    static const t_color _color = WHITE;
+    static const t_color _color = GREEN;
 };
 
 #endif

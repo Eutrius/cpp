@@ -26,6 +26,8 @@ SRC = src/main.cpp \
 	  src/Animal.cpp \
 	  src/Cat.cpp \
 	  src/Dog.cpp \
+	  src/WrongAnimal.cpp \
+	  src/WrongCat.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore

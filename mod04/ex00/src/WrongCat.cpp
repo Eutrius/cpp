@@ -2,7 +2,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,38 +11,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog(void) : Animal()
+WrongCat::WrongCat(void) : WrongAnimal()
 {
-    _type = "Dog";
+    _type = "WrongCat";
     cPrint("A " + _type + " has spawned", 1, _color);
 }
 
-Dog::Dog(const Dog &other) : Animal()
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal()
 {
     _type = other._type;
     cPrint("A " + _type + " has been cloned", 1, _color);
 }
 
-Dog::~Dog(void)
+WrongCat::~WrongCat(void)
 {
     cPrint("A " + _type + " has despawned", 1, _color);
 }
 
-Dog &Dog::operator=(const Dog &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
     _type = other._type;
     cPrint("A " + _type + " has been cloned", 1, _color);
     return (*this);
 }
 
-std::string Dog::getType(void) const
+std::string WrongCat::getType(void) const
 {
     return (_type);
 }
 
-void Dog::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
-    cPrint(_type + ": Bark! Bark!", 1, _color);
+    cPrint(_type + ": Meow!", 1, _color);
 }

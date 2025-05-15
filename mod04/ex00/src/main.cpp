@@ -13,18 +13,45 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
 int main(void)
 {
-    const Animal *meta = new Animal();
-    const Animal *j = new Dog();
-    const Animal *i = new Cat();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+    const Animal *animal = new Animal();
+    std::cout << std::endl;
+    const WrongAnimal *wrongAnimal = new WrongAnimal();
+    std::cout << std::endl;
+    const Animal *dog = new Dog();
+    std::cout << std::endl;
+    const Animal *cat = new Cat();
+    std::cout << std::endl;
+    const WrongAnimal *wrongCat = new WrongCat();
 
+    std::cout << std::endl;
+    std::cout << dog->getType() << " " << std::endl;
+    std::cout << cat->getType() << " " << std::endl;
+    std::cout << wrongCat->getType() << " " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << std::endl;
+    animal->makeSound();
+    wrongAnimal->makeSound();
+    dog->makeSound();
+    std::cout << std::endl;
+
+    cat->makeSound();
+    wrongCat->makeSound();
+
+    std::cout << std::endl;
+    delete (animal);
+    std::cout << std::endl;
+    delete (cat);
+    std::cout << std::endl;
+    delete (dog);
+    std::cout << std::endl;
+    delete (wrongCat);
+    std::cout << std::endl;
     return (0);
 }

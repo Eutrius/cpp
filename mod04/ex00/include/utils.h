@@ -22,7 +22,7 @@ typedef enum e_color
 	GREEN,
 	YELLOW,
 	BLUE,
-	Purple,
+	PURPLE,
 	CYAN,
 	WHITE,
 }		t_color;

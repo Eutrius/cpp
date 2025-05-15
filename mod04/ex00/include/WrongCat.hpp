@@ -13,10 +13,10 @@
 #ifndef WRONGCAT_HPP
 #define WRONGCAT_HPP
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 #include <string>
 
-class WrongCat : public Animal
+class WrongCat : public WrongAnimal
 {
   public:
     WrongCat(void);
@@ -30,7 +30,7 @@ class WrongCat : public Animal
     void makeSound(void) const;
 
   private:
-    static const t_color _color = RED;
+    static const t_color _color = PURPLE;
 };
 
 #endif

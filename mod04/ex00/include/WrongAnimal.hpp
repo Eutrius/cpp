@@ -21,19 +21,19 @@ class WrongAnimal
   public:
     WrongAnimal(void);
     WrongAnimal(const WrongAnimal &other);
-    ~WrongAnimal(void);
+    virtual ~WrongAnimal(void);
 
     WrongAnimal &operator=(const WrongAnimal &other);
 
     virtual std::string getType(void) const;
 
-    virtual void makeSound(void) const;
+    void makeSound(void) const;
 
   protected:
     std::string _type;
 
   private:
-    static const t_color _color = WHITE;
+    static const t_color _color = YELLOW;
 };
 
 #endif
