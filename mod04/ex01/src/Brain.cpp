@@ -38,7 +38,14 @@ Brain &Brain::operator=(const Brain &other)
     return (*this);
 }
 
-const std::string *Brain::getIdeas(void) const
+const std::string Brain::getIdea(void) const
 {
-    return (&_ideas[0]);
+    static int i;
+    return (_ideas[i++ % 100]);
+}
+
+void Brain::setIdea(const std::string idea)
+{
+    static int i;
+    _ideas[i++ % 100] = idea;
 }

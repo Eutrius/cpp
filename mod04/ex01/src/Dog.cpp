@@ -45,6 +45,15 @@ std::string Dog::getType(void) const
     return (_type);
 }
 
+const std::string Dog::getIdea(void) const
+{
+    return (_brain->getIdea());
+}
+void Dog::setIdea(const std::string idea)
+{
+    _brain->setIdea(idea);
+}
+
 void Dog::makeSound(void) const
 {
     cPrint(_type + ": Bark! Bark!", 1, _color);
