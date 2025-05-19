@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:47:29 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 12:10:35 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef UTILS_H
+# define UTILS_H
 
-#include <string>
+# include <string>
 
-class Brain
+typedef enum e_color
 {
-  public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+	BLACK,
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	PURPLE,
+	CYAN,
+	WHITE,
+}		t_color;
 
-    Brain &operator=(const Brain &other);
-
-  private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
-};
+void	cPrint(const std::string &str, int endl = 1, t_color color = WHITE);
 
 #endif

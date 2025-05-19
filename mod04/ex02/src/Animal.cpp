@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                         :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
-#include "utils.h"
+#include "Animal.hpp"
 
-Brain::Brain(void)
+Animal::Animal(void) : _type("Animal")
 {
-    cPrint("A Brain has been created");
+    cPrint("One " + _type + " has spawned", 1, _color);
 }
 
-Brain::Brain(const Brain &other)
+Animal::Animal(const Animal &other) : _type(other._type)
 {
-    for (int i = 0; i < IDEAS; i++)
-        _ideas[i] = other._ideas[i];
-    cPrint("A Brain has been cloned");
+    cPrint("One " + _type + " has been cloned", 1, _color);
 }
 
-Brain::~Brain(void)
+Animal::~Animal(void)
 {
-    cPrint("A Brain has been destroyed");
+    cPrint("One " + _type + " has despawned", 1, _color);
 }
 
-Brain &Brain::operator=(const Brain &other)
+Animal &Animal::operator=(const Animal &other)
 {
-    for (int i = 0; i < IDEAS; i++)
-        _ideas[i] = other._ideas[i];
-    cPrint("A Brain has been cloned");
+    _type = other._type;
+    cPrint("One " + _type + " has been cloned", 1, _color);
     return (*this);
+}
+
+std::string Animal::getType(void) const
+{
+    return (_type);
 }

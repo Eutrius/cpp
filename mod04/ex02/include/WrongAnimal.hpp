@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:17:43 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
+#include "utils.h"
 #include <string>
 
-class Brain
+class WrongAnimal
 {
   public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+    WrongAnimal(void);
+    WrongAnimal(const WrongAnimal &other);
+    virtual ~WrongAnimal(void);
 
-    Brain &operator=(const Brain &other);
+    WrongAnimal &operator=(const WrongAnimal &other);
+
+    virtual std::string getType(void) const;
+
+    void makeSound(void) const;
+
+  protected:
+    std::string _type;
 
   private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
+    static const t_color _color = YELLOW;
 };
 
 #endif

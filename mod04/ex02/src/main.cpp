@@ -17,6 +17,7 @@
 
 int main(void)
 {
+	// Animal a;
     std::cout << std::endl;
     cPrint("########## DEFAULT TEST ##########", 1, CYAN);
     std::cout << std::endl;

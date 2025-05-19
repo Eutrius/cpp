@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/19 22:02:38 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/19 22:06:53 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
-
+#include "AMateria.hpp"
 #include <string>
 
-class Brain
+AMateria::AMateria(void)
 {
-  public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+}
 
-    Brain &operator=(const Brain &other);
+AMateria::AMateria(std::string const &type) : _type(type)
+{
+}
 
-  private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
-};
+AMateria::AMateria(const AMateria &other) : _type(other._type)
+{
+}
 
-#endif
+AMateria::~AMateria(void)
+{
+}
+
+AMateria &AMateria::operator=(const AMateria &other)
+{
+    _type = other._type;
+    return (*this);
+}
+
+std::string const &AMateria::getType(void) const
+{
+    return (_type);
+}

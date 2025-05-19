@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/19 18:45:09 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/19 22:14:36 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 
 #include <string>
 
-class Brain
+class AMateria
 {
   public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+    AMateria(void);
+    AMateria(std::string const &type);
+    AMateria(const AMateria &other);
+    virtual ~AMateria(void);
 
-    Brain &operator=(const Brain &other);
+    AMateria &operator=(const AMateria &other);
 
-  private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
+    std::string const &getType(void) const;
+    virtual AMateria *clone(void) const = 0;
+    // virtual void use(ICharacter &target);
+
+  protected:
+    std::string _type;
 };
 
 #endif

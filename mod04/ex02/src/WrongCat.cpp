@@ -2,7 +2,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,46 +11,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "WrongCat.hpp"
 
-Cat::Cat(void) : Animal()
+WrongCat::WrongCat(void) : WrongAnimal()
 {
-    _type = "Cat";
+    _type = "WrongCat";
     cPrint("A " + _type + " has spawned", 1, _color);
-    _brain = new Brain();
 }
 
-Cat::Cat(const Cat &other) : Animal()
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal()
 {
     _type = other._type;
     cPrint("A " + _type + " has been cloned", 1, _color);
-    _brain = new Brain();
 }
 
-Cat::~Cat(void)
+WrongCat::~WrongCat(void)
 {
-    delete (_brain);
     cPrint("A " + _type + " has despawned", 1, _color);
 }
 
-Cat &Cat::operator=(const Cat &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
     _type = other._type;
     cPrint("A " + _type + " has been cloned", 1, _color);
     return (*this);
 }
 
-std::string Cat::getType(void) const
+std::string WrongCat::getType(void) const
 {
     return (_type);
 }
 
-const Brain *Cat::getBrainPtr(void) const
-{
-    return (_brain);
-}
-
-void Cat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
     cPrint(_type + ": Meow!", 1, _color);
 }

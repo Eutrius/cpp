@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/19 22:12:23 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/19 23:00:20 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
-
+#include "Ice.hpp"
 #include <string>
 
-class Brain
+Ice::Ice(void) : AMateria("ice")
 {
-  public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+}
 
-    Brain &operator=(const Brain &other);
+Ice::Ice(const Ice &other) : AMateria(other)
+{
+}
 
-  private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
-};
+Ice::~Ice(void)
+{
+}
 
-#endif
+Ice &Ice::operator=(const Ice &other)
+{
+    (void)other;
+    return (*this);
+}
+
+Ice *Ice::clone(void) const
+{
+    return (new Ice());
+}

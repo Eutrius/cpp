@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/19 22:12:23 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/19 23:40:18 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
-
+#include "Cure.hpp"
 #include <string>
 
-class Brain
+Cure::Cure(void) : AMateria("cure")
 {
-  public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+}
 
-    Brain &operator=(const Brain &other);
+Cure::Cure(const Cure &other) : AMateria(other)
+{
+}
 
-  private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
-};
+Cure::~Cure(void)
+{
+}
 
-#endif
+Cure &Cure::operator=(const Cure &other)
+{
+
+    return (*this);
+}
+
+Cure *Cure::clone(void) const
+{
+    return (new Cure());
+}

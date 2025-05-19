@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,23 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
+#include "utils.h"
 #include <string>
 
-class Brain
+class Animal
 {
   public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+    Animal(void);
+    Animal(const Animal &other);
+    virtual ~Animal(void);
 
-    Brain &operator=(const Brain &other);
+    Animal &operator=(const Animal &other);
+
+    virtual std::string getType(void) const;
+    virtual void makeSound(void) const = 0;
+
+  protected:
+    std::string _type;
 
   private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
+    static const t_color _color = GREEN;
 };
 
 #endif

@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                         :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:45:09 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/13 18:18:49 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
+#include "WrongAnimal.hpp"
 #include <string>
 
-class Brain
+class WrongCat : public WrongAnimal
 {
   public:
-    Brain(void);
-    Brain(const Brain &other);
-    ~Brain(void);
+    WrongCat(void);
+    WrongCat(const WrongCat &other);
+    ~WrongCat(void);
 
-    Brain &operator=(const Brain &other);
+    WrongCat &operator=(const WrongCat &other);
+
+    std::string getType(void) const;
+
+    void makeSound(void) const;
 
   private:
-	static const int IDEAS = 100;
-    std::string _ideas[IDEAS];
+    static const t_color _color = PURPLE;
 };
 
 #endif
