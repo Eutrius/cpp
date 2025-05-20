@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 21:20:31 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/19 21:20:38 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/20 22:15:55 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/20 22:16:57 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
-#include "Cure.hpp"
-#include "Ice.hpp"
-#include <iostream>
+#include "MateriaSource.hpp"
 
-int main(void)
+MateriaSource::MateriaSource(void)
 {
-    AMateria *j = new Ice();
-    AMateria *k = new Cure();
-    AMateria *c = j;
-    std::cout << j->getType() << std::endl;
-    std::cout << k->getType() << std::endl;
-    std::cout << c->getType() << std::endl;
-    return (0);
+}
+
+MateriaSource::MateriaSource(const MateriaSource &other)
+{
+}
+
+MateriaSource::~MateriaSource(void)
+{
+}
+
+MateriaSource &MateriaSource::operator=(const MateriaSource &other)
+{
+    return (*this);
 }

@@ -27,7 +27,7 @@ Cure::~Cure(void)
 
 Cure &Cure::operator=(const Cure &other)
 {
-
+	(void)other;
     return (*this);
 }
 

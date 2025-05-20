@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 21:20:31 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/19 21:20:38 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/20 22:17:14 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/20 22:17:22 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
-#include "Cure.hpp"
-#include "Ice.hpp"
-#include <iostream>
+#include "Character.hpp"
 
-int main(void)
+Character::Character(void)
 {
-    AMateria *j = new Ice();
-    AMateria *k = new Cure();
-    AMateria *c = j;
-    std::cout << j->getType() << std::endl;
-    std::cout << k->getType() << std::endl;
-    std::cout << c->getType() << std::endl;
-    return (0);
+}
+
+Character::Character(const Character &other)
+{
+}
+
+Character::~Character(void)
+{
+}
+
+Character &Character::operator=(const Character &other)
+{
+    return (*this);
 }
