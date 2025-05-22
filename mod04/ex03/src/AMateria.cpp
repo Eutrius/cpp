@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
+#include <iostream>
 #include <string>
 
 AMateria::AMateria(void)
@@ -38,4 +39,9 @@ AMateria &AMateria::operator=(const AMateria &other)
 std::string const &AMateria::getType(void) const
 {
     return (_type);
+}
+
+void AMateria::use(ICharacter &target)
+{
+    std::cout << "* A " << getType() << "has been used to " << target.getName() << " *" << std::endl;
 }

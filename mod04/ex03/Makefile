@@ -23,8 +23,8 @@ SRC_DIR = src
 
 SRC = src/main.cpp \
 	  src/AMateria.cpp \
-	  src/ICharacter.cpp \
-	  src/IMateriaSource.cpp \
+	  src/Character.cpp \
+	  src/MateriaSource.cpp \
 	  src/Ice.cpp \
 	  src/Cure.cpp \
 

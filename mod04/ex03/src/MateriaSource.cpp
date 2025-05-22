@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
+#include "Ice.hpp"
 
 MateriaSource::MateriaSource(void)
 {
@@ -18,6 +19,7 @@ MateriaSource::MateriaSource(void)
 
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
+    (void)other;
 }
 
 MateriaSource::~MateriaSource(void)
@@ -26,5 +28,17 @@ MateriaSource::~MateriaSource(void)
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 {
+    (void)other;
     return (*this);
+}
+
+void MateriaSource::learnMateria(AMateria *materia)
+{
+    (void)materia;
+}
+
+AMateria *MateriaSource::createMateria(std::string const &type)
+{
+    (void)type;
+    return (new Ice());
 }
