@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 22:16:33 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/20 22:16:53 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:50:49 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ class MateriaSource : public IMateriaSource
 
     void learnMateria(AMateria *);
     AMateria *createMateria(std::string const &type);
+
+  private:
+    int _nMaterias;
+    AMateria *_materias[4];
 };
 
 #endif
