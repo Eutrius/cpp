@@ -22,9 +22,8 @@ Cat::Cat(void) : Animal()
 
 Cat::Cat(const Cat &other) : Animal()
 {
-    _type = other._type;
-    cPrint("A " + _type + " has been cloned", 1, _color);
     _brain = new Brain();
+    *this = other;
 }
 
 Cat::~Cat(void)
@@ -36,6 +35,7 @@ Cat::~Cat(void)
 Cat &Cat::operator=(const Cat &other)
 {
     _type = other._type;
+    *_brain = *other._brain;
     cPrint("A " + _type + " has been cloned", 1, _color);
     return (*this);
 }

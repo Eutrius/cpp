@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
+#include "utils.h"
+#include <iostream>
 
 MateriaSource::MateriaSource(void) : _nMaterias(0)
 {
@@ -18,6 +20,7 @@ MateriaSource::MateriaSource(void) : _nMaterias(0)
 
 MateriaSource::MateriaSource(const MateriaSource &other)
 {
+    _nMaterias = 0;
     *this = other;
 }
 
@@ -29,6 +32,10 @@ MateriaSource::~MateriaSource(void)
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 {
+    if (this == &other)
+        return (*this);
+    for (int i = 0; i < _nMaterias; i++)
+        delete (_materias[i]);
     _nMaterias = other._nMaterias;
     for (int i = 0; i < other._nMaterias; i++)
         _materias[i] = other._materias[i]->clone();
@@ -55,4 +62,19 @@ AMateria *MateriaSource::createMateria(std::string const &type)
         }
     }
     return (0);
+}
+
+void MateriaSource::printInfo(const std::string &name) const
+{
+    cPrint(name, 1, YELLOW);
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << "Materia " << i << ": ";
+        if (i < _nMaterias)
+            std::cout << _materias[i]->getType();
+        else
+            std::cout << "NULL";
+        std::cout << "\n";
+    }
+    std::cout << std::endl;
 }

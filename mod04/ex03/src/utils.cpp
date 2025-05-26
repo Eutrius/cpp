@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 22:12:23 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/19 23:00:20 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:48:20 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 14:45:02 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
+#include "utils.h"
 #include <iostream>
-#include <string>
+#include <sstream>
 
-Ice::Ice(void) : AMateria("ice")
+void cPrint(const std::string &str, int endl, t_color color)
 {
-}
+    std::ostringstream oss;
+    oss << color;
 
-Ice::Ice(const Ice &other) : AMateria(other)
-{
-}
-
-Ice::~Ice(void)
-{
-}
-
-Ice &Ice::operator=(const Ice &other)
-{
-    (void)other;
-    return (*this);
-}
-
-AMateria *Ice::clone(void) const
-{
-    return (new Ice());
-}
-
-void Ice::use(ICharacter &target)
-{
-    std::cout << "* shoot an ice bolt at " << target.getName() << " *" << std::endl;
+    std::cout << "\033[38;5;" << oss.str() << "m";
+    std::cout << str << "\033[0m";
+    if (endl)
+        std::cout << std::endl;
 }

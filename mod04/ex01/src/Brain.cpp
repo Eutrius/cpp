@@ -12,6 +12,8 @@
 
 #include "Brain.hpp"
 #include "utils.h"
+#include <iostream>
+#include <ostream>
 
 Brain::Brain(void)
 {

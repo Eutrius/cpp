@@ -27,12 +27,12 @@ class Dog : public Animal
     Dog &operator=(const Dog &other);
 
     std::string getType(void) const;
-	const Brain *getBrainPtr(void) const;
+    const Brain *getBrainPtr(void) const;
 
     void makeSound(void) const;
 
   private:
-    const Brain *_brain;
+    Brain *_brain;
     static const t_color _color = BLUE;
 };
 

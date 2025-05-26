@@ -32,7 +32,7 @@ Cure &Cure::operator=(const Cure &other)
     return (*this);
 }
 
-Cure *Cure::clone(void) const
+AMateria *Cure::clone(void) const
 {
     return (new Cure());
 }

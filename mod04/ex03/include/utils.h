@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 14:05:16 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 14:42:31 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:47:29 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 12:10:35 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef UTILS_H
+# define UTILS_H
 
-#include "Animal.hpp"
-#include "Brain.hpp"
-#include <string>
+# include <string>
 
-class Cat : public Animal
+typedef enum e_color
 {
-  public:
-    Cat(void);
-    Cat(const Cat &other);
-    ~Cat(void);
+	BLACK,
+	RED,
+	GREEN,
+	YELLOW,
+	BLUE,
+	PURPLE,
+	CYAN,
+	WHITE,
+}		t_color;
 
-    Cat &operator=(const Cat &other);
-
-    std::string getType(void) const;
-    const Brain *getBrainPtr(void) const;
-
-    void makeSound(void) const;
-
-  private:
-    Brain *_brain;
-    static const t_color _color = RED;
-};
+void	cPrint(const std::string &str, int endl = 1, t_color color = WHITE);
 
 #endif

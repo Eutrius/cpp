@@ -30,6 +30,7 @@ class Character : public ICharacter
     void equip(AMateria *m);
     void unequip(int idx);
     void use(int idx, ICharacter &target);
+    void printInfo(const std::string &message) const;
 
   private:
     int _nMaterias;

@@ -25,7 +25,7 @@ class Brain
     Brain &operator=(const Brain &other);
 
   private:
-	static const int IDEAS = 100;
+    static const int IDEAS = 100;
     std::string _ideas[IDEAS];
 };
 

@@ -15,109 +15,59 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "MateriaSource.hpp"
-#include <iostream>
+#include "utils.h"
 
 int main(void)
 {
-    // Constructors
-    std::cout << std::endl;
-    std::cout << "CONSTRUCTORS:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
+    cPrint("* Materia Source Test *", 1, GREEN);
     IMateriaSource *src = new MateriaSource();
-    src->learnMateria(new Ice());
     src->learnMateria(new Cure());
+    src->learnMateria(src->createMateria("cure"));
+    src->learnMateria(new Ice());
+    src->learnMateria(src->createMateria("ice"));
+    src->learnMateria(new Ice());
+    dynamic_cast<MateriaSource *>(src)->printInfo("src");
+    MateriaSource src_copy;
+    src_copy.learnMateria(new Ice());
+    src_copy.learnMateria(new Ice());
+
+    src_copy.printInfo("src_copy before");
+    src_copy = *(dynamic_cast<MateriaSource *>(src));
+
+    src_copy.printInfo("src_copy after");
+
+    delete (src);
+
+    cPrint("* Character Test *", 1, GREEN);
     ICharacter *me = new Character("me");
-    std::cout << std::endl;
+    dynamic_cast<Character *>(me)->printInfo("");
 
-    // Create Materia
-    std::cout << "CREATE MATERIA:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
-    AMateria *tmp;
+    me->equip(src_copy.createMateria("cure"));
+    me->equip(src_copy.createMateria("cure"));
+    me->equip(src_copy.createMateria("ice"));
+    me->equip(src_copy.createMateria("ice"));
 
-    AMateria *tmp1;
-    AMateria *tmp2;
-    AMateria *tmp3;
-    AMateria *tmp4;
+    dynamic_cast<Character *>(me)->printInfo("after equip");
 
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp1 = src->createMateria("cure");
-    me->equip(tmp1);
-    tmp = src->createMateria("fire"); // null
-    me->equip(tmp);
-    std::cout << std::endl;
+    Character copy = *(dynamic_cast<Character *>(me));
+    AMateria *tmp = copy.getMateriaPtr(3);
+    copy.unequip(3);
+    copy.unequip(5);
+    delete (tmp);
+    copy.printInfo("copy");
 
-    // Use on a new character
-    std::cout << "USE ON A NEW CHARACTER:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
+    copy.use(5, *me);
+
+    dynamic_cast<Character *>(me)->printInfo("");
     ICharacter *bob = new Character("bob");
+
     me->use(0, *bob);
     me->use(1, *bob);
-    std::cout << std::endl;
-    me->use(2, *bob); // Use an empty / non existing slot in inventory
-    me->use(-4, *bob);
-    me->use(18, *bob);
-    std::cout << std::endl;
+    me->use(2, *bob);
+    me->use(3, *bob);
 
-    // Deep copy character
-    std::cout << "DEEP COPY CHARACTER:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
-    Character *charles = new Character("Charles");
-    tmp2 = src->createMateria("cure");
-    charles->equip(tmp2);
-    tmp3 = src->createMateria("ice");
-    charles->equip(tmp3);
-    tmp = src->createMateria("earth");
-    charles->equip(tmp);
-    Character *charles_copy = new Character(*charles);
-    std::cout << std::endl;
+    delete (me);
+    delete (bob);
 
-    // Deep copy vs its source character
-    std::cout << "DEEP COPY VS SOURCE:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
-    charles->unequip(0); // this shows that they have different materia pointers equipped
-    tmp4 = charles_copy->getMateriaPtr(1);
-    charles_copy->unequip(1); // this will produce a leak if we don't store the address somewhere else before
-    delete tmp4;
-    tmp = src->createMateria("cure");
-    charles_copy->equip(tmp);
-    tmp = src->createMateria("ice");
-    charles_copy->equip(tmp);
-    std::cout << std::endl;
-
-    charles->use(0, *bob);
-    charles->use(1, *bob);
-    charles->use(2, *bob);
-    charles->use(3, *bob);
-    std::cout << std::endl;
-    charles_copy->use(0, *bob);
-    charles_copy->use(1, *bob);
-    charles_copy->use(2, *bob);
-    charles_copy->use(3, *bob);
-    std::cout << std::endl;
-
-    // Unequip tests:
-    std::cout << "UNEQUIP:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
-    me->unequip(-1); // unequip an empty / non existing slot in inventory
-    me->unequip(18);
-    me->unequip(3);
-    std::cout << std::endl;
-    me->use(1, *charles);
-    me->unequip(1);       // Unequip a valid slot in inventory (cure unequipped)
-    me->use(1, *charles); // try to use it
-    std::cout << std::endl;
-
-    // Destructors
-    std::cout << "DESTRUCTORS:" << std::endl;
-    std::cout << "-----------------------" << std::endl;
-    delete bob;
-    delete me;
-    delete src;
-    delete charles;
-    delete charles_copy;
-    delete tmp1;
-    delete tmp2;
-    std::cout << std::endl;
-    // system("leaks ex03");
+    return (0);
 }

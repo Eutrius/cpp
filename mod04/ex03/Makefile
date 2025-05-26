@@ -27,6 +27,7 @@ SRC = src/main.cpp \
 	  src/MateriaSource.cpp \
 	  src/Ice.cpp \
 	  src/Cure.cpp \
+	  src/utils.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore

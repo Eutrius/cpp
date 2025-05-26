@@ -22,9 +22,8 @@ Dog::Dog(void) : Animal()
 
 Dog::Dog(const Dog &other) : Animal()
 {
-    _type = other._type;
-    cPrint("A " + _type + " has been cloned", 1, _color);
     _brain = new Brain();
+    *this = other;
 }
 
 Dog::~Dog(void)
@@ -36,6 +35,7 @@ Dog::~Dog(void)
 Dog &Dog::operator=(const Dog &other)
 {
     _type = other._type;
+    *_brain = *other._brain;
     cPrint("A " + _type + " has been cloned", 1, _color);
     return (*this);
 }
@@ -47,7 +47,7 @@ std::string Dog::getType(void) const
 
 const Brain *Dog::getBrainPtr(void) const
 {
-    return _brain;
+    return (_brain);
 }
 
 void Dog::makeSound(void) const
