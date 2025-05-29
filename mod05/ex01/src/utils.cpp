@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 11:47:29 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/05/13 12:10:35 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:48:20 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 14:45:02 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#pragma once
 
-#include <string>
+#include "utils.h"
+#include <iostream>
+#include <sstream>
 
-typedef enum e_color
+void cPrint(const std::string &str, int endl, t_color color)
 {
-	BLACK,
-	RED,
-	GREEN,
-	YELLOW,
-	BLUE,
-	PURPLE,
-	CYAN,
-	WHITE,
-}		t_color;
+    std::ostringstream oss;
+    oss << color;
 
-void	cPrint(const std::string &str, int endl = 1, t_color color = WHITE);
+    std::cout << "\033[38;5;" << oss.str() << "m";
+    std::cout << str << "\033[0m";
+    if (endl)
+        std::cout << std::endl;
+}

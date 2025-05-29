@@ -9,11 +9,13 @@
 /*   Updated: 2025/05/27 14:30:03 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #pragma once
+#include "Form.hpp"
 #include <exception>
 #include <iostream>
 #include <string>
+
+class Form;
 
 class Bureaucrat
 {
@@ -29,6 +31,7 @@ class Bureaucrat
     int getGrade(void) const;
     void incrementGrade(void);
     void decrementGrade(void);
+    void signForm(Form &form);
 
     class GradeTooHighException : public std::exception
     {
