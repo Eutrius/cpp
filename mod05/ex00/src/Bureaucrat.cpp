@@ -12,7 +12,7 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void)
+Bureaucrat::Bureaucrat(void) : _name("Bureaucrat")
 {
 }
 
@@ -58,6 +58,22 @@ const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 {
     return ("Bureaucrat grade is lower than 150");
+}
+
+void Bureaucrat::incrementGrade(void)
+{
+    if (_grade == 1)
+        throw GradeTooHighException();
+    else
+        _grade -= 1;
+}
+
+void Bureaucrat::decrementGrade(void)
+{
+    if (_grade == 150)
+        throw GradeTooLowException();
+    else
+        _grade += 1;
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
