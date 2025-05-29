@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,29 +9,30 @@
 /*   Updated: 2025/05/27 14:30:03 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #pragma once
-#include "Form.hpp"
+#include "Bureaucrat.hpp"
 #include <exception>
 #include <iostream>
 #include <string>
 
-class Form;
+class Bureaucrat;
 
-class Bureaucrat
+class AForm
 {
   public:
-    Bureaucrat(void);
-    Bureaucrat(const std::string &name, int grade);
-    Bureaucrat(const Bureaucrat &other);
-    ~Bureaucrat(void);
+    AForm(void);
+    AForm(const std::string &name, const int gradeToSign, const int gradeToExecute);
+    AForm(const AForm &other);
+    ~AForm(void);
 
-    Bureaucrat &operator=(const Bureaucrat &other);
+    AForm &operator=(const AForm &other);
 
     const std::string &getName(void) const;
-    int getGrade(void) const;
-    void incrementGrade(void);
-    void decrementGrade(void);
-    void signForm(Form *form);
+    bool getStatus(void) const;
+    int getGradeToSign(void) const;
+    int getGradeToExecute(void) const;
+    void beSigned(const Bureaucrat &bureaucrat);
 
     class GradeTooHighException : public std::exception
     {
@@ -47,7 +48,9 @@ class Bureaucrat
 
   private:
     const std::string _name;
-    int _grade;
+    const int _gradeToSign;
+    const int _gradeToExecute;
+    bool _status;
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
+std::ostream &operator<<(std::ostream &os, const AForm &form);

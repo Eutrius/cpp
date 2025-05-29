@@ -109,14 +109,14 @@ int main(void)
     }
 
     std::cout << std::endl;
-    cPrint("*** Form Test ***", 1, BLUE);
-    Form *form;
+    cPrint("*** AForm Test ***", 1, BLUE);
+    AForm *form;
 
     try
     {
         std::cout << std::endl;
         cPrint(" * Test gradeToSign too high! * ", 1, GREEN);
-        form = new Form("Form", 0, 150);
+        form = new AForm("AForm", 0, 150);
         std::cout << *form << std::endl;
     }
     catch (const std::exception &e)
@@ -128,7 +128,7 @@ int main(void)
     {
         std::cout << std::endl;
         cPrint(" * Test gradeToExecute too high! * ", 1, GREEN);
-        form = new Form("Form", 150, 0);
+        form = new AForm("AForm", 150, 0);
         std::cout << *form << std::endl;
     }
     catch (const std::exception &e)
@@ -140,7 +140,7 @@ int main(void)
     {
         std::cout << std::endl;
         cPrint(" * Test gradeToSign too low! * ", 1, GREEN);
-        form = new Form("Form", 151, 1);
+        form = new AForm("AForm", 151, 1);
         std::cout << *form << std::endl;
     }
     catch (const std::exception &e)
@@ -152,7 +152,7 @@ int main(void)
     {
         std::cout << std::endl;
         cPrint(" * Test gradeToExecute too low! * ", 1, GREEN);
-        form = new Form("Form", 1, 151);
+        form = new AForm("AForm", 1, 151);
         std::cout << *form << std::endl;
     }
     catch (const std::exception &e)
@@ -164,7 +164,7 @@ int main(void)
     {
         std::cout << std::endl;
         cPrint(" * Test valid form! * ", 1, GREEN);
-        form = new Form("Form", 1, 1);
+        form = new AForm("AForm", 1, 1);
         std::cout << *form << std::endl;
         delete form;
     }
@@ -176,7 +176,7 @@ int main(void)
     std::cout << std::endl;
     cPrint(" * Test valid form! * ", 1, GREEN);
     me = new Bureaucrat("Vincent", 2);
-    form = new Form("ExecutiveOrder", 1, 1);
+    form = new AForm("AForm", 1, 1);
     std::cout << *me << std::endl;
     std::cout << *form << std::endl;
     std::cout << std::endl;
