@@ -25,6 +25,7 @@ SRC = src/main.cpp \
 	  src/utils.cpp \
 	  src/Bureaucrat.cpp \
 	  src/AForm.cpp \
+	  src/ShrubberyCreationForm.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore

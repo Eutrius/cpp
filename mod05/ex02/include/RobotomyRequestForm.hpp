@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,18 +13,19 @@
 
 #include "AForm.hpp"
 #include "utils.h"
-#include <fstream>
+#include <cstdlib>
+#include <ctime>
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
   public:
-    ShrubberyCreationForm(void);
-    ShrubberyCreationForm(const std::string &target);
-    ShrubberyCreationForm(const ShrubberyCreationForm &other);
-    ~ShrubberyCreationForm(void);
+    RobotomyRequestForm(void);
+    RobotomyRequestForm(const std::string &target);
+    RobotomyRequestForm(const RobotomyRequestForm &other);
+    ~RobotomyRequestForm(void);
 
     const std::string &getTarget(void) const;
-    ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
+    RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
     virtual void execute(const Bureaucrat &executor) const;
 
   private:

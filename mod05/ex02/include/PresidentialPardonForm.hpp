@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,18 +13,17 @@
 
 #include "AForm.hpp"
 #include "utils.h"
-#include <fstream>
 
-class ShrubberyCreationForm : public AForm
+class PresidentialPardonForm : public AForm
 {
   public:
-    ShrubberyCreationForm(void);
-    ShrubberyCreationForm(const std::string &target);
-    ShrubberyCreationForm(const ShrubberyCreationForm &other);
-    ~ShrubberyCreationForm(void);
+    PresidentialPardonForm(void);
+    PresidentialPardonForm(const std::string &target);
+    PresidentialPardonForm(const PresidentialPardonForm &other);
+    ~PresidentialPardonForm(void);
 
     const std::string &getTarget(void) const;
-    ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
+    PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
     virtual void execute(const Bureaucrat &executor) const;
 
   private:

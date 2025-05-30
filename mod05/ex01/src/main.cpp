@@ -181,7 +181,7 @@ int main(void)
     std::cout << *form << std::endl;
     std::cout << std::endl;
     cPrint("1st attempt", 1, YELLOW);
-    me->signForm(form);
+    me->signForm(*form);
     try
     {
         std::cout << std::endl;
@@ -195,7 +195,7 @@ int main(void)
     }
     std::cout << std::endl;
     cPrint("2nd attempt", 1, YELLOW);
-    me->signForm(form);
+    me->signForm(*form);
     std::cout << *form << std::endl;
 
     delete (me);
