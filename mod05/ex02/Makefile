@@ -6,7 +6,7 @@
 #    By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 16:42:22 by jyriarte          #+#    #+#              #
-#    Updated: 2025/05/27 11:52:10 by jyriarte         ###   ########.fr        #
+#    Updated: 2025/06/01 13:47:43 by jyriarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,15 @@ SRC = src/main.cpp \
 	  src/Bureaucrat.cpp \
 	  src/AForm.cpp \
 	  src/ShrubberyCreationForm.cpp \
+	  src/RobotomyRequestForm.cpp \
+	  src/PresidentialPardonForm.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
-IGN = .gitignore
+	IGN = .gitignore
+	COMPILEDB = compile_commands.json
 
-$(NAME): $(OBJ)
-	@$(CC) -o $@ $^
+$(NAME): $(IGN) $(COMPILEDB) $(OBJ)
+	@$(CC) -o $@ $(OBJ)
 	@printf "\n\033[1A\033[K"
 	@printf "\033[0;32m$(TITLE) compiled OK!\n"
 	@printf "\033[0;37m"
@@ -41,7 +44,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@printf "\033[0;37m Generating $(TITLE) objects... %-33.33s\r" $@
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-RULES = all clean fclean re run valgrind i c 
+$(IGN): 	
+	@printf "$(IGN)\n$(COMPILEDB)\n$(NAME)\n$(OBJ_DIR)\n.cache\n" > $(IGN)
+
+$(COMPILEDB):
+	@compiledb -n make --no-print-directory re
+
+RULES = all clean fclean re run valgrind 
 
 all: $(NAME)
 
@@ -58,16 +67,12 @@ fclean:
 
 re: fclean all
 
-i: 	
-	@printf "$(IGN)\n.cache\ncompile_commands.json\n$(NAME)\n$(OBJ_DIR)\n" > $(IGN)
-
-c:
-	@compiledb -n make --no-print-directory re
-
 run: $(NAME)
+	@clear
 	@./$(NAME) $(filter-out $(RULES), $(MAKECMDGOALS))
 
 valgrind: $(NAME)
+	@clear
 	@valgrind ./$(NAME) $(filter-out $(RULES), $(MAKECMDGOALS))
 
 %:
