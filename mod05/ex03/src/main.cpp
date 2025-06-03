@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
@@ -20,14 +18,32 @@ int main(void)
     std::cout << std::endl;
 
     {
+        cPrint(" * Intern Form Creation Test * ", 1, GREEN);
+
+        Intern intern;
+
+        std::string formTypes[] = {"shrubbery creation", "robotomy request", "presidential pardon", "nonexistent form"};
+
+        for (int i = 0; i < 4; ++i)
+        {
+            std::cout << std::endl;
+            std::cout << "Attempting to create: \"" << formTypes[i] << "\"" << std::endl;
+            AForm *form = intern.makeForm(formTypes[i], "Target");
+            if (form)
+                delete form;
+        }
+    }
+
+    {
+        std::cout << std::endl;
         cPrint(" * ShrubberyCreationForm Test * ", 1, GREEN);
 
-        std::cout << std::endl;
-        cPrint("Step 1: Initialization", 1, YELLOW);
+        Intern intern;
+        AForm *form = intern.makeForm("shrubbery creation", "Garden");
+
         Bureaucrat lowGrade("LowGrade", 150);
         Bureaucrat signer("ShrubberySigner", 145);
         Bureaucrat executor("ShrubberyExecutor", 137);
-        AForm *form = new ShrubberyCreationForm("Garden");
 
         std::cout << lowGrade << std::endl;
         std::cout << signer << std::endl;
@@ -90,13 +106,12 @@ int main(void)
         std::cout << std::endl;
         cPrint(" * RobotomyRequestForm Test * ", 1, GREEN);
 
-        std::cout << std::endl;
-        cPrint("Step 1: Initialization", 1, YELLOW);
+        Intern intern;
+        AForm *form = intern.makeForm("robotomy request", "Bender");
+
         Bureaucrat lowGrade("LowGrade", 150);
         Bureaucrat signer("RobotomySigner", 72);
         Bureaucrat executor("RobotomyExecutor", 45);
-        AForm *form = new RobotomyRequestForm("Bender");
-        AForm *form1 = new RobotomyRequestForm("Bender");
 
         std::cout << lowGrade << std::endl;
         std::cout << signer << std::endl;
@@ -137,7 +152,6 @@ int main(void)
         try
         {
             signer.signForm(*form);
-            signer.signForm(*form1);
         }
         catch (const std::exception &e)
         {
@@ -148,8 +162,6 @@ int main(void)
         {
             for (int i = 0; i < 3; ++i)
                 executor.executeForm(*form);
-            for (int i = 0; i < 3; ++i)
-                executor.executeForm(*form1);
         }
         catch (const std::exception &e)
         {
@@ -163,12 +175,12 @@ int main(void)
         std::cout << std::endl;
         cPrint(" * PresidentialPardonForm Test * ", 1, GREEN);
 
-        std::cout << std::endl;
-        cPrint("Step 1: Initialization", 1, YELLOW);
+        Intern intern;
+        AForm *form = intern.makeForm("presidential pardon", "Arthur Dent");
+
         Bureaucrat lowGrade("LowGrade", 150);
         Bureaucrat signer("PardonSigner", 25);
         Bureaucrat executor("PardonExecutor", 5);
-        AForm *form = new PresidentialPardonForm("Arthur Dent");
 
         std::cout << lowGrade << std::endl;
         std::cout << signer << std::endl;
