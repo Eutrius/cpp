@@ -53,7 +53,7 @@ int AForm::getGradeToSign(void) const
 
 int AForm::getGradeToExecute(void) const
 {
-    return (_gradeToSign);
+    return (_gradeToExecute);
 }
 
 bool AForm::getStatus(void) const

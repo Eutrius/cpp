@@ -14,16 +14,18 @@
 
 RobotomyRequestForm::RobotomyRequestForm(void) : AForm()
 {
+    std::srand(std::time(0));
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
     : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
+    std::srand(std::time(0));
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), _target(other._target)
 {
-    (void)other;
+    std::srand(std::time(0));
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
@@ -32,7 +34,7 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
-    (void)other;
+    _target = other._target;
     return (*this);
 }
 
@@ -47,7 +49,6 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const
         throw FormNotSignedException();
     if (executor.getGrade() > this->getGradeToExecute())
         throw GradeTooLowException();
-    std::srand(std::time(0));
 
     if (std::rand() % 2)
     {
