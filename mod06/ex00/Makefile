@@ -22,7 +22,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 
 SRC = src/main.cpp \
-	  src/utils.cpp \
+	  src/ScalarConverter.cpp \
 
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 IGN = .gitignore

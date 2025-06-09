@@ -12,9 +12,10 @@
 
 #pragma once
 
+#include <cfloat>
+#include <climits>
 #include <cstdlib>
 #include <iostream>
-#include <string>
 
 enum Type
 {
