@@ -14,7 +14,8 @@
 
 static bool isSpecial(const std::string &param);
 static bool isInvalid(const std::string &param);
-static void getTypeValue(const std::string &param, long double *value, Type *type);
+static Type getType(const std::string &param);
+static long double getValue(const std::string &param, Type type);
 
 void ScalarConverter::convert(const std::string &param)
 {
@@ -26,9 +27,8 @@ void ScalarConverter::convert(const std::string &param)
         return;
     }
 
-    long double value = 0;
-    Type type = INT;
-    getTypeValue(param, &value, &type);
+    Type type = getType(param);
+    long double value = getValue(param, type);
 
     std::cout << "char: ";
     if (value >= 32 && value <= 126)
@@ -44,13 +44,15 @@ void ScalarConverter::convert(const std::string &param)
     else
         std::cout << static_cast<int>(value) << "\n";
 
+    bool dotZeroFlag = (static_cast<int>(value) == value && value < 1e6 && (value > 1e-5 || value == 0));
+
     std::cout << "float: ";
     if (value > FLT_MAX || value < -FLT_MAX)
         std::cout << "overflow\n";
     else
     {
         std::cout << static_cast<float>(value);
-        if (type == INT && value < 1e6 && (value > 1e-5 || value == 0))
+        if (dotZeroFlag)
             std::cout << ".0";
         std::cout << "f\n";
     }
@@ -61,35 +63,34 @@ void ScalarConverter::convert(const std::string &param)
     else
     {
         std::cout << static_cast<double>(value);
-        if (type == INT && value < 1e6 && (value > 1e-5 || value == 0))
+        if (dotZeroFlag)
             std::cout << ".0";
         std::cout << "\n";
     }
 }
 
-static void getTypeValue(const std::string &param, long double *value, Type *type)
+static Type getType(const std::string &param)
 {
     if (param.size() == 3 && param[0] == '\'' && param[2] == '\'')
-    {
-        *type = CHAR;
-        *value = param[1];
-        return;
-    }
+        return (CHAR);
 
-    char **end = NULL;
-    *value = strtold(param.c_str(), end);
-
-    if (static_cast<int>(*value) == *value)
-    {
-        *type = INT;
-        return;
-    }
     if (param.find('.') != std::string::npos)
     {
-        *type = DOUBLE;
         if (param[param.size() - 1] == 'f')
-            *type = FLOAT;
+            return (FLOAT);
+        return (DOUBLE);
     }
+    return (INT);
+}
+
+static long double getValue(const std::string &param, Type type)
+{
+    char **end = NULL;
+    if (type & CHAR)
+        return (param[1]);
+    if (type & (INT | FLOAT | DOUBLE))
+        return (std::strtold(param.c_str(), end));
+    return (0);
 }
 
 static bool isSpecial(const std::string &param)

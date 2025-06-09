@@ -19,16 +19,17 @@
 
 enum Type
 {
-    CHAR,
-    INT,
-    FLOAT,
-    DOUBLE,
-    INVALID,
-    SPECIAL,
+    CHAR = 1 << 1,
+    INT = 1 << 2,
+    FLOAT = 1 << 3,
+    DOUBLE = 1 << 4,
 };
 
 class ScalarConverter
 {
   public:
     static void convert(const std::string &param);
+
+  private:
+    ScalarConverter(void);
 };
