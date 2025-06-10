@@ -34,13 +34,13 @@ void ScalarConverter::convert(const std::string &param)
     if (value >= 32 && value <= 126)
         std::cout << "'" << static_cast<char>(value) << "'\n";
     else if (value > CHAR_MAX || value < CHAR_MIN)
-        std::cout << "overflow\n";
+        std::cout << "overflow or underflow\n";
     else
         std::cout << "non displayable\n";
 
     std::cout << "int: ";
     if (value > INT_MAX || value < INT_MIN)
-        std::cout << "overflow\n";
+        std::cout << "overflow or underflow\n";
     else
         std::cout << static_cast<int>(value) << "\n";
 
@@ -48,7 +48,7 @@ void ScalarConverter::convert(const std::string &param)
 
     std::cout << "float: ";
     if (value > FLT_MAX || value < -FLT_MAX)
-        std::cout << "overflow\n";
+        std::cout << "overflow or underflow\n";
     else
     {
         std::cout << static_cast<float>(value);
@@ -59,7 +59,7 @@ void ScalarConverter::convert(const std::string &param)
 
     std::cout << "double: ";
     if (value > DBL_MAX || value < -DBL_MAX)
-        std::cout << "overflow\n";
+        std::cout << "overflow or underflow\n";
     else
     {
         std::cout << static_cast<double>(value);
