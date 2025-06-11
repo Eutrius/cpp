@@ -1,45 +1,54 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 16:39:05 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/06/10 16:39:07 by jyriarte         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "iter.hpp"
+#include <Array.hpp>
+#include <cstdlib>
 #include <iostream>
 
-void printInt(int x)
+#define MAX_VAL 750
+int main(int, char **)
 {
-    std::cout << x << " ";
-}
+    Array<int> numbers(MAX_VAL);
+    int *mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    // SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-void printFloat(float x)
-{
-    std::cout << x << " ";
-}
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return (1);
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-void printChar(char x)
-{
-    std::cout << x << " ";
-}
-
-int main(void)
-{
-    int a[] = {1, 2, 3, 4};
-    float b[] = {1.1f, 2.2f, 3.3f};
-    char c[] = {'a', 'b', 'c', 'd'};
-
-    ::iter(a, 4, printInt);
-    std::cout << std::endl;
-    ::iter(b, 3, printFloat);
-    std::cout << std::endl;
-    ::iter(c, 4, printChar);
-    std::cout << std::endl;
-
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete[] mirror;
     return (0);
 }
