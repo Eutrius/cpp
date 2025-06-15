@@ -6,9 +6,11 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 11:18:36 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/06/15 12:17:45 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/06/15 12:22:34 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <algorithm>
 #include <stdexcept>
@@ -20,5 +22,5 @@ template <typename T> typename T::const_iterator easyfind(const T &container, in
     if (it != container.end())
         return (it);
     else
-        throw std::runtime_error("Value not found");
+        throw std::runtime_error("Int not found");
 }
