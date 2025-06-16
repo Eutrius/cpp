@@ -5,46 +5,100 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/15 11:18:17 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/06/15 12:17:42 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/06/17 00:25:32 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/06/17 01:09:47 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.hpp"
 #include <deque>
 #include <iostream>
 #include <list>
 #include <set>
 #include <vector>
 
+#include "easyfind.hpp"
+#include "utils.h"
+
 int main(void)
 {
-    try
-    {
-        int arr[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-        size_t n = sizeof(arr) / sizeof(arr[0]);
+	std::cout << std::endl;
+	cPrint(" * Test with std::vector<int> * ", 1, GREEN);
+	std::vector<int> vector;
+	std::vector<int>::iterator vectorIter;
+	for (int i = 0; i < 10; ++i)
+		vector.push_back(i * 2);
 
-        std::vector<int> vec(arr, arr + n);
-        std::cout << "vector: " << *easyfind(vec, 20) << std::endl;
+	try
+	{
+		vectorIter = easyfind(vector, 2);
+		std::cout << "Found: " << *vectorIter << std::endl;
+		vectorIter = easyfind(vector, 4);
+		std::cout << "Found: " << *vectorIter << std::endl;
+		vectorIter = easyfind(vector, 6);
+		std::cout << "Found: " << *vectorIter << std::endl;
+		vectorIter = easyfind(vector, 7);
+		std::cout << "Found: " << *vectorIter << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-        std::list<int> lst(arr, arr + n);
-        std::cout << "list: " << *easyfind(lst, 30) << std::endl;
+	std::cout << std::endl;
+	cPrint(" * Test with std::list<int> * ", 1, GREEN);
+	std::list<int> list;
+	std::list<int>::iterator listIter;
+	list.push_back(10);
+	list.push_back(20);
+	list.push_back(30);
 
-        std::deque<int> deq(arr, arr + n);
-        std::cout << "deque: " << *easyfind(deq, 40) << std::endl;
+	try
+	{
+		listIter = easyfind(list, 10);
+		std::cout << "Found: " << *listIter << std::endl;
+		listIter = easyfind(list, 20);
+		std::cout << "Found: " << *listIter << std::endl;
+		listIter = easyfind(list, 99);
+		std::cout << "Found: " << *listIter << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-        std::set<int> st(arr, arr + n);
-        std::cout << "set: " << *easyfind(st, 50) << std::endl;
+	std::cout << std::endl;
+	cPrint(" * Test with empty std::deque<int> * ", 1, GREEN);
+	std::deque<int> deque;
+	std::deque<int>::iterator dequeIter;
 
-        std::multiset<int> mst(arr, arr + n);
-        std::cout << "multiset: " << *easyfind(mst, 10) << std::endl;
+	try
+	{
+		dequeIter = easyfind(deque, 1);
+		std::cout << "Found: " << *dequeIter << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-        easyfind(vec, 42);
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
+	std::cout << std::endl;
+	cPrint(" * Test with std::set<int> * ", 1, GREEN);
+	std::set<int> set;
+	std::set<int>::const_iterator setIter;
+	for (int i = 0; i < 10; ++i)
+		set.insert(i * 3);
 
-    return (0);
+	try
+	{
+		setIter = easyfind(set, 9);
+		std::cout << "Found: " << *setIter << std::endl;
+		setIter = easyfind(set, 8);
+		std::cout << "Found: " << *setIter << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	return (0);
 }

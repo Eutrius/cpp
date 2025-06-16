@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/15 11:18:36 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/06/17 00:38:55 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/05/13 11:48:20 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/05/13 14:45:02 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-
-#include <algorithm>
+#include "utils.h"
 #include <iostream>
-#include <stdexcept>
+#include <sstream>
 
-template <typename T>
-typename T::iterator easyfind(T &container, int num)
+void cPrint(const std::string &str, int endl, t_color color)
 {
-	typename T::iterator it;
-	it = std::find(container.begin(), container.end(), num);
-	if (it != container.end())
-		return (it);
-	else
-		throw std::runtime_error("Int not found");
+    std::ostringstream oss;
+    oss << color;
+
+    std::cout << "\033[38;5;" << oss.str() << "m";
+    std::cout << str << "\033[0m";
+    if (endl)
+        std::cout << std::endl;
 }

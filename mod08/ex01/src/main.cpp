@@ -5,126 +5,136 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/15 14:35:40 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/06/15 14:39:35 by jyriarte         ###   ########.fr       */
+/*   Created: 2025/06/17 00:50:12 by jyriarte          #+#    #+#             */
+/*   Updated: 2025/06/17 01:03:31 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
 #include <vector>
 
-static void printTitle(const std::string &title)
-{
-    std::cout << "\n=== " << title << " ===\n";
-}
+#include "Span.hpp"
+#include "utils.h"
 
 int main(void)
 {
-    std::srand(static_cast<unsigned int>(std::time(0)));
+	std::cout << std::endl;
+	cPrint(" * Test basic add and span * ", 1, GREEN);
+	try
+	{
+		Span span(5);
+		span.addNumber(6);
+		span.addNumber(3);
+		span.addNumber(17);
+		span.addNumber(9);
+		span.addNumber(11);
 
-    try
-    {
-        printTitle("Basic test with 100000 numbers");
-        Span span(100000);
-        std::vector<int> nums;
-        nums.reserve(100000);
-        for (int i = 0; i < 100000; ++i)
-            nums.push_back(std::rand());
-        span.addNumbers(nums);
-        std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
-        std::cout << "Longest span:  " << span.longestSpan() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Error during 100000 test: " << e.what() << std::endl;
-    }
+		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
+		std::cout << "Longest span:  " << span.longestSpan() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-    try
-    {
-        printTitle("Error: calling shortestSpan() with no numbers");
-        Span s(5);
-        std::cout << s.shortestSpan() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Expected error: " << e.what() << std::endl;
-    }
+	std::cout << std::endl;
+	cPrint(" * Test overflow * ", 1, GREEN);
+	try
+	{
+		Span span(2);
+		span.addNumber(1);
+		span.addNumber(2);
+		span.addNumber(3);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-    try
-    {
-        printTitle("Error: calling longestSpan() with one number");
-        Span s(3);
-        s.addNumber(42);
-        std::cout << s.longestSpan() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Expected error: " << e.what() << std::endl;
-    }
+	std::cout << std::endl;
+	cPrint(" * Test invalid size * ", 1, GREEN);
+	try
+	{
+		Span span(0);
+		span.addNumber(1);
+		span.addNumber(2);
+		span.addNumber(3);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-    try
-    {
-        printTitle("Error: addNumber() past max capacity");
-        Span s(2);
-        s.addNumber(1);
-        s.addNumber(2);
-        s.addNumber(3);
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Expected error: " << e.what() << std::endl;
-    }
+	std::cout << std::endl;
+	cPrint(" * Test with insufficient numbers * ", 1, GREEN);
+	try
+	{
+		Span span(3);
+		span.addNumber(42);
+		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-    try
-    {
-        printTitle("Error: addNumbers() causing overflow");
-        Span s(3);
-        std::vector<int> v;
-        v.push_back(1);
-        v.push_back(2);
-        v.push_back(3);
-        v.push_back(4);
-        s.addNumbers(v);
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Expected error: " << e.what() << std::endl;
-    }
+	std::cout << std::endl;
+	cPrint(" * Test bulk add with addNumbers * ", 1, GREEN);
+	try
+	{
+		Span span(6);
+		std::vector<int> nums;
+		nums.push_back(10);
+		nums.push_back(20);
+		nums.push_back(30);
+		nums.push_back(40);
+		nums.push_back(50);
+		nums.push_back(60);
 
-    try
-    {
-        printTitle("Test with all identical numbers (span should be 0)");
-        Span s(5);
-        for (int i = 0; i < 5; ++i)
-            s.addNumber(42);
-        std::cout << "Shortest span: " << s.shortestSpan() << std::endl;
-        std::cout << "Longest span:  " << s.longestSpan() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+		span.addNumbers(nums);
 
-    try
-    {
-        printTitle("Test with mixed positive and negative numbers");
-        Span s(6);
-        s.addNumber(-10);
-        s.addNumber(20);
-        s.addNumber(5);
-        s.addNumber(-5);
-        s.addNumber(0);
-        s.addNumber(30);
-        std::cout << "Shortest span: " << s.shortestSpan() << std::endl;
-        std::cout << "Longest span:  " << s.longestSpan() << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
+		std::cout << "Longest span:  " << span.longestSpan() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-    return (0);
+	std::cout << std::endl;
+	cPrint(" * Test bulk add overflow * ", 1, GREEN);
+	try
+	{
+		Span span(3);
+		std::vector<int> nums;
+		nums.push_back(1);
+		nums.push_back(2);
+		nums.push_back(3);
+		nums.push_back(4);
+
+		span.addNumbers(nums);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	std::cout << std::endl;
+	cPrint(" * Test with 42,000 numbers * ", 1, GREEN);
+	try
+	{
+		const int size = 42000;
+		Span span(size);
+		for (int i = 0; i < size; ++i)
+			span.addNumber(i * 3);
+
+		std::cout << "Shortest span: " << span.shortestSpan() << std::endl;
+		std::cout << "Longest span:  " << span.longestSpan() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	return (0);
 }
