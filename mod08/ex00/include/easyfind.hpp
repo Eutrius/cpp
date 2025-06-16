@@ -15,12 +15,13 @@
 #include <algorithm>
 #include <stdexcept>
 
-template <typename T> typename T::const_iterator easyfind(const T &container, int num)
+template <typename T>
+typename T::const_iterator easyfind(const T &container, int num)
 {
-    typename T::const_iterator it;
-    it = std::find(container.begin(), container.end(), num);
-    if (it != container.end())
-        return (it);
-    else
-        throw std::runtime_error("Int not found");
+	typename T::const_iterator it;
+	it = std::find(container.begin(), container.end(), num);
+	if (it != container.end())
+		return (it);
+	else
+		throw std::runtime_error("Int not found");
 }
