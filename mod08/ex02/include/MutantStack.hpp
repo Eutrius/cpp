@@ -16,9 +16,7 @@
 #include <iostream>
 #include <stack>
 
-// clang-format off
 template <typename T, class Container = std::deque<T> >
-// clang-format on
 class MutantStack : public std::stack<T, Container>
 {
    public:
