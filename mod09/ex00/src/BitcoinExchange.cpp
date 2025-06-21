@@ -31,7 +31,7 @@ BitcoinExchange::BitcoinExchange(const std::string &datafile)
 
 	std::string line;
 	std::getline(file, line);
-	if (line != "data,exchange_rate")
+	if (line != "date,exchange_rate")
 		throw std::runtime_error("Error: data file corrupted");
 
 	while (std::getline(file, line))
@@ -47,12 +47,10 @@ BitcoinExchange::BitcoinExchange(const std::string &datafile)
 		float value = std::atof(line.substr(cPosition + 1).c_str());
 		if (value < 0)
 			throw std::runtime_error("Error: invalid bitcoin value less than 0");
-
-		std::pair<std::map<std::string, float>::iterator, bool> res =
-		    _data.insert(std::pair<std::string, float>(date, value));
-		if (!res.second)
-			throw std::runtime_error("Error: duplicate date on data file");
+		_data[date] = value;
 	}
+	// if (_data.size() == 0)
+	// 	throw std::runtime_error("Error: empty data file");
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _data(other._data)
@@ -71,6 +69,26 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 
 void BitcoinExchange::exchange(const std::string &line)
 {
+	std::pair<std::string, float> validLine;
+	try
+	{
+		validLine = processLine(line);
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return;
+	}
+	std::map<std::string, float>::iterator it = _data.lower_bound(validLine.first);
+	std::cout << validLine.first << " => " << validLine.second << " = ";
+	if (it == _data.end() || it->first != validLine.first)
+	{
+		if (it == _data.begin())
+			validLine.second = 0;
+		else
+			--it;
+	}
+	std::cout << validLine.second * it->second << std::endl;
 }
 
 static std::pair<std::string, float> processLine(const std::string &line)
@@ -147,6 +165,7 @@ static bool isValueValid(const std::string &str)
 			if (dotFlog)
 				return (false);
 			dotFlog = true;
+			continue;
 		}
 
 		if (!std::isdigit(*it))
