@@ -13,8 +13,8 @@
 #include "RPN.hpp"
 
 static bool isOperator(char c);
-static int betterPop(std::stack<int> &stack);
-static int operate(int x, int y, char op);
+static long long betterPop(std::stack<long long> &stack);
+static long long operate(long long x, long long y, char op);
 
 RPN::RPN(void)
 {
@@ -37,10 +37,10 @@ RPN &RPN::operator=(const RPN &other)
 
 void RPN::solve(const std::string &expr)
 {
-	std::stack<int> stack;
+	std::stack<long long> stack;
 	char c;
-	int x;
-	int y;
+	long long x;
+	long long y;
 	size_t i = 0;
 
 	for (; i < expr.size(); i++)
@@ -72,14 +72,14 @@ void RPN::solve(const std::string &expr)
 	std::cout << betterPop(stack) << std::endl;
 }
 
-static int betterPop(std::stack<int> &stack)
+static long long betterPop(std::stack<long long> &stack)
 {
-	int n = stack.top();
+	long long n = stack.top();
 	stack.pop();
 	return (n);
 }
 
-static int operate(int x, int y, char op)
+static long long operate(long long x, long long y, char op)
 {
 	switch (op)
 	{
