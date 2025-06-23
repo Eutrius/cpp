@@ -6,7 +6,7 @@
 /*   By: jyriarte <jyriarte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:24:25 by jyriarte          #+#    #+#             */
-/*   Updated: 2025/06/18 17:58:14 by jyriarte         ###   ########.fr       */
+/*   Updated: 2025/06/22 13:11:46 by jyriarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ BitcoinExchange::BitcoinExchange(const std::string &datafile)
 			throw std::runtime_error("Error: invalid bitcoin value less than 0");
 		_data[date] = value;
 	}
-	// if (_data.size() == 0)
-	// 	throw std::runtime_error("Error: empty data file");
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : _data(other._data)
