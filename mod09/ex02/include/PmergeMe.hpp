@@ -13,19 +13,19 @@
 #pragma once
 
 #include <cstddef>
-#include <list>
+#include <deque>
 #include <vector>
 
 class PmergeMe
 {
-  public:
-    static void sortVec(std::vector<int> &vec);
-    static void sortList(std::list<int> &list);
+   public:
+	static void sortVec(std::vector<int> &vec);
+	static void sortDeque(std::deque<int> &deque);
 
-  private:
-    PmergeMe(void);
-    PmergeMe(const PmergeMe &other);
-    ~PmergeMe(void);
+   private:
+	PmergeMe(void);
+	PmergeMe(const PmergeMe &other);
+	~PmergeMe(void);
 
-    PmergeMe &operator=(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &other);
 };
