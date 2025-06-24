@@ -10,11 +10,99 @@
 /*   Updated: 2025/06/21 15:14:44 by jyriarte         ###   ########.fr       */
 /* ************************************************************************** */
 
+#include "PmergeMe.hpp"
+#include <climits>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+#include <list>
+#include <set>
+#include <sstream>
+#include <vector>
+
+static int parseNum(const std::string &num);
+static double calculateTime(std::clock_t start);
+static void printTimes(double vecTime, double listTime, int size);
 
 int main(int argc, char **argv)
 {
-	(void) argc;
-	(void) argv;
-	return (0);
+    if (argc < 2)
+    {
+        std::cerr << "Error" << std::endl;
+        return (1);
+    }
+
+    std::set<int> control;
+    std::vector<int> vec;
+    std::list<int> list;
+
+    int value;
+    for (int i = 1; i < argc; i++)
+    {
+        try
+        {
+            value = parseNum(argv[i]);
+            std::pair<std::set<int>::iterator, bool> res = control.insert(value);
+            if (!res.second)
+                throw std::invalid_argument("Error: duplicate input");
+            vec.push_back(value);
+            list.push_back(value);
+        }
+        catch (std::exception &e)
+        {
+            std::cerr << e.what() << std::endl;
+            return (1);
+        }
+    }
+
+    std::cout << "Before: ";
+    for (int i = 1; i < argc; i++)
+    {
+        std::cout << std::atoi(argv[i]) << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "After:  ";
+    for (std::set<int>::iterator it = control.begin(); it != control.end(); it++)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+
+    std::clock_t start = std::clock();
+    double vecTime;
+    double listTime;
+    PmergeMe::sortVec(vec);
+    vecTime = calculateTime(start);
+    start = std::clock();
+    PmergeMe::sortList(list);
+    listTime = calculateTime(start);
+    printTimes(vecTime, listTime, argc - 1);
+    return (0);
+}
+
+static void printTimes(double vecTime, double listTime, int size)
+{
+    std::cout << "Time to process a range of " << size << " elements with std::vector : " << vecTime << "µs\n";
+    std::cout << "Time to process a range of " << size << " elements with std::list : " << listTime << "µs";
+    std::cout << std::endl;
+}
+
+static double calculateTime(std::clock_t start)
+{
+    std::clock_t end = std::clock();
+    double time = static_cast<double>(end - start) * 1e6 / CLOCKS_PER_SEC;
+    return (time);
+}
+
+static int parseNum(const std::string &num)
+{
+    std::stringstream ss;
+    ss << num;
+    long value;
+    ss >> value;
+
+    if (ss.fail() || !ss.eof() || value < 0 || value > INT_MAX)
+        throw std::invalid_argument("Error");
+
+    return (static_cast<int>(value));
 }

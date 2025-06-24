@@ -12,12 +12,20 @@
 
 #pragma once
 
+#include <cstddef>
+#include <list>
+#include <vector>
+
 class PmergeMe
 {
-   public:
-   private:
-	PmergeMe(void);
-	PmergeMe(const PmergeMe &other);
-	~PmergeMe(void);
-	PmergeMe &operator=(const PmergeMe &other);
+  public:
+    static void sortVec(std::vector<int> &vec);
+    static void sortList(std::list<int> &list);
+
+  private:
+    PmergeMe(void);
+    PmergeMe(const PmergeMe &other);
+    ~PmergeMe(void);
+
+    PmergeMe &operator=(const PmergeMe &other);
 };

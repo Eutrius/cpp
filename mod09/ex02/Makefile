@@ -10,8 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RPN
-TITLE = Reverse Polish Notation
+NAME = PmergeMe
+TITLE = PmergeMe
 
 CC = g++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
