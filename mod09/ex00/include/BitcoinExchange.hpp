@@ -16,18 +16,19 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <stdexcept>
 
 class BitcoinExchange
 {
-   public:
-	BitcoinExchange(const std::string &datafile);
-	BitcoinExchange(const BitcoinExchange &other);
-	~BitcoinExchange(void);
+  public:
+    BitcoinExchange(const std::string &datafile);
+    BitcoinExchange(const BitcoinExchange &other);
+    ~BitcoinExchange(void);
 
-	BitcoinExchange &operator=(const BitcoinExchange &other);
-	void exchange(const std::string &line);
+    BitcoinExchange &operator=(const BitcoinExchange &other);
+    void exchange(const std::string &line);
 
-   private:
-	BitcoinExchange(void);
-	std::map<std::string, float> _data;
+  private:
+    BitcoinExchange(void);
+    std::map<std::string, float> _data;
 };
