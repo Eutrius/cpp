@@ -11,27 +11,26 @@
 /* ************************************************************************** */
 
 #include <iostream>
-
 #include "iter.hpp"
 
-void printInt(int x)
+void printInt(const int &x)
 {
 	std::cout << x << " ";
 }
 
-void printFloat(float x)
+void printFloat(const float &x)
 {
 	std::cout << x << " ";
 }
 
-void printChar(char x)
+void printChar(char &x)
 {
 	std::cout << x << " ";
 }
 
 int main(void)
 {
-	int a[] = {1, 2, 3, 4};
+	const int a[] = {1, 2, 3, 4};
 	float b[] = {1.1f, 2.2f, 3.3f};
 	char c[] = {'a', 'b', 'c', 'd'};
 
